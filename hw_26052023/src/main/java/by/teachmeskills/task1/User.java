@@ -9,6 +9,11 @@ public class User {
         this.password = password;
     }
 
+    public User(){
+        this.login = "None";
+        this.password = "None";
+    }
+
     public String getLogin() {
         return login;
     }

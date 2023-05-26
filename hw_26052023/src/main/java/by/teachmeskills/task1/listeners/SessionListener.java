@@ -1,5 +1,6 @@
 package by.teachmeskills.task1.listeners;
 
+import by.teachmeskills.task1.User;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
@@ -10,7 +11,7 @@ public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         HttpSession httpSession = se.getSession();
-        httpSession.setAttribute("loggedIn",false);
+        httpSession.setAttribute("currentUser",new User());
     }
 
     @Override

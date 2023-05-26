@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!((boolean) req.getSession().getAttribute("loggedIn"))) {
+        if (((User)req.getSession().getAttribute("currentUser")).getLogin().equals("None")) {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
         } else {
@@ -32,15 +32,23 @@ public class MainServlet extends HttpServlet {
         String password = req.getParameter("password");
         ServletContext servletContext = getServletContext();
         DBConnectionManager dbConnectionManager = (DBConnectionManager) servletContext.getAttribute("DBManager");
-        User user = dbConnectionManager.getUserDB(login, password);
+        User user = CRUDUtils.getUserDB(login, password, dbConnectionManager.getConnection());
         if (user != null) {
             HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("loggedIn", true);
+            httpSession.setAttribute("currentUser", user);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/home.jsp");
             requestDispatcher.forward(req, resp);
         } else {
-            PrintWriter writer = resp.getWriter();
-            writer.write("Ваши данные неверны!");
+            /*
+            Почему я выводил просто текст, а не возвращал страницу логина: по заданию нужно использовать фильтр.
+            Причем его можно использовать только в doPost. То есть, если убрать кодировку с самой страницы,
+            то в методе doGet при получении страницы будут стремные символы.
+            Если делать перенаправление(возврат) странички логина
+            через requestDispatcher здесь, то фильтр не применится, ведь setContentType в фильтре делается для
+            response, а dispatcher работает через request *задумчивое лицо*
+             */
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
+            requestDispatcher.forward(req, resp);
         }
     }
 }

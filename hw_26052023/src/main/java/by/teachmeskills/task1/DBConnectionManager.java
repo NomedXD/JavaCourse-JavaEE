@@ -11,7 +11,6 @@ public class DBConnectionManager {
     private String login;
     private String password;
     private Connection connection;
-    public static String GET_USER_QUERY = "SELECT * FROM users WHERE login = ? AND password = ?";
 
     public DBConnectionManager(String url, String login, String password) {
         this.url = url;
@@ -22,19 +21,6 @@ public class DBConnectionManager {
             connection = DriverManager.getConnection(url, login, password);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    public User getUserDB(String login, String password){
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
-            preparedStatement.setString(1,login);
-            preparedStatement.setString(2,password);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return new User(resultSet.getString("login"), resultSet.getString("password"));
-        } catch (SQLException e) {
-            return null;
         }
     }
 
