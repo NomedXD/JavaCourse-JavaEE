@@ -13,26 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CRUDUtils {
-    private static final String GET_USER_QUERY = "SELECT * FROM 02062023_task2_users WHERE login = ? AND password = ?";
-    private static final String GET_All_CATEGORIES = "SELECT * FROM 02062023_task2_categories";
-    private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM 02062023_task2_products WHERE categoryid = ?";
+    private static final String GET_USER_QUERY = "SELECT * FROM users WHERE login = ? AND password = ?";
+    private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
+    private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
 
-    public static User getUserDB(String login, String password, Connection connection) {
+    public static User getUser(String login, String password, Connection connection) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
-                    resultSet.getString("name"), resultSet.getString("surname"),
-                    resultSet.getString("balance"));
+            if(resultSet.next()) {
+                return new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
+                        resultSet.getString("name"), resultSet.getString("surname"),
+                        resultSet.getString("balance"));
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             return null;
         }
     }
 
-    public static List<Category> getAllCategoriesDB(Connection connection){
+    public static List<Category> getAllCategories(Connection connection){
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_All_CATEGORIES);
@@ -47,7 +50,7 @@ public class CRUDUtils {
         }
     }
 
-    public static List<Product> getProductsByCategoryDB(int categoryId, Connection connection){
+    public static List<Product> getProductsByCategory(int categoryId, Connection connection){
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
             preparedStatement.setInt(1, categoryId);

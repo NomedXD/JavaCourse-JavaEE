@@ -20,6 +20,8 @@ public class MainServlet extends HttpServlet {
         if (((User) req.getSession().getAttribute("currentUser")).getLogin().equals("None")) {
             getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         } else {
+            DBConnectionManager dbConnectionManager = (DBConnectionManager) req.getServletContext().getAttribute("DBManager");
+            req.setAttribute("categories", CRUDUtils.getAllCategories(dbConnectionManager.getConnection()));
             getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
         }
     }
@@ -30,10 +32,11 @@ public class MainServlet extends HttpServlet {
         String password = req.getParameter("password");
         ServletContext servletContext = req.getServletContext();
         DBConnectionManager dbConnectionManager = (DBConnectionManager) servletContext.getAttribute("DBManager");
-        User user = CRUDUtils.getUserDB(login, password, dbConnectionManager.getConnection());
+        User user = CRUDUtils.getUser(login, password, dbConnectionManager.getConnection());
         if (user != null && user.getLogin() != null && user.getPassword() != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", user);
+            req.setAttribute("categories", CRUDUtils.getAllCategories(dbConnectionManager.getConnection()));
             getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
         } else {
             getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);

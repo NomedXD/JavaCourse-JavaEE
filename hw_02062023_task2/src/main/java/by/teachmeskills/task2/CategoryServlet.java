@@ -15,7 +15,7 @@ public class CategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBConnectionManager dbConnectionManager = (DBConnectionManager) getServletContext().getAttribute("DBManager");
-        req.setAttribute("products", CRUDUtils.getProductsByCategoryDB(Integer.parseInt(req.getParameter("categoryid")),
+        req.setAttribute("products", CRUDUtils.getProductsByCategory(Integer.parseInt(req.getParameter("categoryid")),
                 dbConnectionManager.getConnection()));
         getServletContext().getRequestDispatcher("/category.jsp").forward(req,resp);
     }

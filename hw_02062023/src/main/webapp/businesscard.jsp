@@ -25,11 +25,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <p>${requestScope.info}</p>
-            <p>${requestScope.maininfo}</p>
+            <p>${requestScope.userData.get("info1")}</p>
+            <p>${requestScope.userData.get("maininfo")}</p>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <img src="${requestScope.imgpath}"> <!-- pageContext.request.contextPath-->
+            <img src="${requestScope.userData.get("imgpath")}"> <!-- pageContext.request.contextPath-->
         </div>
     </div>
 </div>

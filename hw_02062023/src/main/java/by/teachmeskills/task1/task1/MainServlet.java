@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet("/aboutme")
 //@WebServlet(urlPatterns = {"/task"})
@@ -14,9 +15,8 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBConnectionManager dbConnectionManager = (DBConnectionManager) req.getServletContext().getAttribute("DBManager");
-        req.setAttribute("info", CRUDUtils.getInfo(dbConnectionManager.getConnection()).get(0));
-        req.setAttribute("imgpath", CRUDUtils.getInfo(dbConnectionManager.getConnection()).get(1));
-        req.setAttribute("maininfo", CRUDUtils.getInfo(dbConnectionManager.getConnection()).get(2));
+        Map<String, String> userData = CRUDUtils.getInfo(dbConnectionManager.getConnection());
+        req.setAttribute("userData", userData);
         getServletContext().getRequestDispatcher("/businesscard.jsp").forward(req, resp);
     }
 }

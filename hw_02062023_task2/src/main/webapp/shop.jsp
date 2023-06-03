@@ -14,7 +14,7 @@
 <body class="body">
 <jsp:include page="header.jsp"/>
 <div class="gallery">
-    <c:forEach items="${applicationScope.categories}" var="item">
+    <c:forEach items="${requestScope.categories}" var="item">
         <div class="content">
             <img class="shopImg" src="${item.getImagepath()}">
             <h3>${item.getName()}</h3>

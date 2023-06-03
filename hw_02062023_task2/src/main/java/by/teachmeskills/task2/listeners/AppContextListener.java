@@ -17,7 +17,6 @@ public class AppContextListener implements ServletContextListener {
         String dbuser = ctx.getInitParameter("dbuser");
         DBConnectionManager dbConnectionManager = new DBConnectionManager(dburl, dbuser, dbpass);
         ctx.setAttribute("DBManager", dbConnectionManager);
-        ctx.setAttribute("categories", CRUDUtils.getAllCategoriesDB(dbConnectionManager.getConnection()));
         System.out.println("app initialized");
     }
 
