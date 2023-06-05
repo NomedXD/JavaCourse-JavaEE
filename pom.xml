@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>hw_26052023</module>
+        <module>hw_02062023</module>
+        <module>hw_02062023_task2</module>
     </modules>
 
     <properties>
