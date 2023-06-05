@@ -18,44 +18,44 @@ public class CRUDUtils {
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
 
     public static User getUser(String login, String password, Connection connection) {
+        User user = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
-                return new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
+                user = new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
                         resultSet.getString("name"), resultSet.getString("surname"),
                         resultSet.getString("balance"));
-            } else {
-                return null;
             }
+            return user;
         } catch (SQLException e) {
             return null;
         }
     }
 
     public static List<Category> getAllCategories(Connection connection){
+        List<Category> categoryArrayList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_All_CATEGORIES);
-            List<Category> categoryArrayList = new ArrayList<>();
             while (resultSet.next()){
                 categoryArrayList.add(new Category(resultSet.getInt("id"),resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("sometext")));
             }
             return categoryArrayList;
         } catch (SQLException e) {
-            return null;
+            return categoryArrayList;
         }
     }
 
     public static List<Product> getProductsByCategory(int categoryId, Connection connection){
+        List<Product> productList = new ArrayList<>();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
             preparedStatement.setInt(1, categoryId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<Product> productList = new ArrayList<>();
             while (resultSet.next()){
                 productList.add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("description"),
@@ -63,7 +63,7 @@ public class CRUDUtils {
             }
             return productList;
         } catch (SQLException e) {
-            return null;
+            return productList;
         }
     }
 }

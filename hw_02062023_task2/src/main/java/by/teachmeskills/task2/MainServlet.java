@@ -33,7 +33,7 @@ public class MainServlet extends HttpServlet {
         ServletContext servletContext = req.getServletContext();
         DBConnectionManager dbConnectionManager = (DBConnectionManager) servletContext.getAttribute("DBManager");
         User user = CRUDUtils.getUser(login, password, dbConnectionManager.getConnection());
-        if (user != null && user.getLogin() != null && user.getPassword() != null) {
+        if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", user);
             req.setAttribute("categories", CRUDUtils.getAllCategories(dbConnectionManager.getConnection()));
