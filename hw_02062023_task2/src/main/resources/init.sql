@@ -18,11 +18,11 @@ VALUES
 DROP TABLE IF EXISTS products;
 CREATE TABLE products
 (id        INT PRIMARY KEY NOT NULL AUTO_INCREMENT,name VARCHAR(45),
- imagepath VARCHAR(45),description TEXT,categoryid INT);
-INSERT INTO products(name, imagepath, description, categoryid)
+ imagepath VARCHAR(45),description TEXT,categoryid INT, price VARCHAR(45));
+INSERT INTO products(name, imagepath, description, categoryid, price)
 VALUES
-    ('Heroes of Might and Magic 3','images/Heroes of Might and Magic 3.jpeg','A turn-based strategy game developed by Jon Van Caneghem through New World Computing originally released for Microsoft Windows by The 3DO Company in 1999. Its ports to several computer and console systems followed in 1999–2000. It is the third installment of the Heroes of Might and Magic series.',1),
-    ('Call od Duty Modern Warfare 2','images/Call of Duty Modern Warfare 2.jpg','Call of Duty: Modern Warfare II is a first-person shooter video game developed by Infinity Ward for PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, and Microsoft Windows. It is the nineteenth game in the Call of Duty franchise, and the sequel to Call of Duty: Modern Warfare. Its logo was revealed on April 28th, 2022 the game was released on October 28th, 2022.',2);
+    ('Heroes of Might and Magic 3','images/Heroes of Might and Magic 3.jpeg','A turn-based strategy game developed by Jon Van Caneghem through New World Computing originally released for Microsoft Windows by The 3DO Company in 1999. Its ports to several computer and console systems followed in 1999–2000. It is the third installment of the Heroes of Might and Magic series.',1, '5$'),
+    ('Call od Duty Modern Warfare 2','images/Call of Duty Modern Warfare 2.jpg','Call of Duty: Modern Warfare II is a first-person shooter video game developed by Infinity Ward for PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, and Microsoft Windows. It is the nineteenth game in the Call of Duty franchise, and the sequel to Call of Duty: Modern Warfare. Its logo was revealed on April 28th, 2022 the game was released on October 28th, 2022.',2, '19$');
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, login VARCHAR(45),

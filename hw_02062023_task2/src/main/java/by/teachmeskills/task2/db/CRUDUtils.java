@@ -16,6 +16,7 @@ public class CRUDUtils {
     private static final String GET_USER_QUERY = "SELECT * FROM users WHERE login = ? AND password = ?";
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
+    private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
 
     public static User getUser(String login, String password, Connection connection) {
         User user = null;
@@ -24,7 +25,7 @@ public class CRUDUtils {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 user = new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
                         resultSet.getString("name"), resultSet.getString("surname"),
                         resultSet.getString("balance"));
@@ -35,13 +36,13 @@ public class CRUDUtils {
         }
     }
 
-    public static List<Category> getAllCategories(Connection connection){
+    public static List<Category> getAllCategories(Connection connection) {
         List<Category> categoryArrayList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_All_CATEGORIES);
-            while (resultSet.next()){
-                categoryArrayList.add(new Category(resultSet.getInt("id"),resultSet.getString("name"),
+            while (resultSet.next()) {
+                categoryArrayList.add(new Category(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("sometext")));
             }
             return categoryArrayList;
@@ -50,20 +51,37 @@ public class CRUDUtils {
         }
     }
 
-    public static List<Product> getProductsByCategory(int categoryId, Connection connection){
+    public static List<Product> getProductsByCategory(int categoryId, Connection connection) {
         List<Product> productList = new ArrayList<>();
-        try{
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
             preparedStatement.setInt(1, categoryId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 productList.add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("description"),
-                        resultSet.getInt("categoryid")));
+                        resultSet.getInt("categoryid"), resultSet.getString("price")));
             }
             return productList;
         } catch (SQLException e) {
             return productList;
+        }
+    }
+
+    public static Product getProductByItsId(int id, Connection connection) {
+        Product product = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT_BY_ITS_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                product = new Product(resultSet.getInt("id"), resultSet.getString("name"),
+                        resultSet.getString("imagepath"), resultSet.getString("description"),
+                        resultSet.getInt("categoryid"), resultSet.getString("price"));
+            }
+            return product;
+        } catch (SQLException e) {
+            return null;
         }
     }
 }
