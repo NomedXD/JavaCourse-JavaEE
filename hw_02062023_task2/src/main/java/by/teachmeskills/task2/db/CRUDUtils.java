@@ -79,9 +79,9 @@ public class CRUDUtils {
                         resultSet.getString("imagepath"), resultSet.getString("description"),
                         resultSet.getInt("categoryid"), resultSet.getString("price"));
             }
-            return product;
         } catch (SQLException e) {
-            return null;
+            System.out.println(e.getMessage());
         }
+        return product;
     }
 }
