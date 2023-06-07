@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Category</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="category.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="fontawesome/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="header.css">
@@ -29,11 +30,12 @@
         </div>
         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
             <div class="d-flex flex-row align-items-center">
-                <h4 class="mr-1">$14.99</h4>
+                <h4 class="mr-1">${product.getPrice()}</h4>
             </div>
             <h6 class="text-success">Available</h6>
             <div class="d-flex flex-column mt-4">
-                <button class="btn btn-primary btn-sm" type="button">More info</button>
+                <a class="btn btn-primary btn-sm" type="button" href="${pageContext.request.contextPath}
+                /product?productid=${product.getId()}">More info</a>
                 <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
             </div>
         </div>
