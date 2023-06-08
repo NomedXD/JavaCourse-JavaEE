@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CRUDUtils {
-    private static final String GET_USER_QUERY = "SELECT * FROM users WHERE login = ? AND password = ?";
+    private static final String GET_USER_QUERY = "SELECT * FROM users WHERE mail = ? AND password = ?";
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
 
-    public static User getUser(String login, String password, Connection connection) {
+    public static User getUser(String mail, String password, Connection connection) {
         User user = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
-            preparedStatement.setString(1, login);
+            preparedStatement.setString(1, mail);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                user = new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
+                user = new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
                         resultSet.getString("name"), resultSet.getString("surname"),
                         resultSet.getString("balance"));
             }

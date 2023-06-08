@@ -25,9 +25,9 @@ VALUES
     ('Call od Duty Modern Warfare 2','images/Call of Duty Modern Warfare 2.jpg','Call of Duty: Modern Warfare II is a first-person shooter video game developed by Infinity Ward for PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, and Microsoft Windows. It is the nineteenth game in the Call of Duty franchise, and the sequel to Call of Duty: Modern Warfare. Its logo was revealed on April 28th, 2022 the game was released on October 28th, 2022.',2, '19$');
 
 DROP TABLE IF EXISTS users;
-CREATE TABLE users(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, login VARCHAR(45),
+CREATE TABLE users(id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, mail VARCHAR(45),
                                        password VARCHAR(45), name VARCHAR(45), surname VARCHAR(45), balance VARCHAR(45));
-INSERT INTO users(login, password, name, surname, balance)
+INSERT INTO users(mail, password, name, surname, balance)
 VALUES
-    ('user1','111','Bob', 'Jenkins', '777$'),
-    ('user2','222','Alice', 'Ahtung', '666$');
+    ('user1@gmail.com','111','Bob', 'Jenkins', '777$'),
+    ('user2@gmail.com','222','Alice', 'Ahtung', '666$');

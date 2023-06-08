@@ -16,7 +16,7 @@
     <form action="shop" method="post">
         <h2 class="sr-only">Login Form</h2>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-        <div class="form-group"><input class="form-control" name="login" placeholder="Login"></div>
+        <div class="form-group"><input class="form-control" name="mail" placeholder="Mail"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
         </div>
         <div class="form-group">
