@@ -17,6 +17,8 @@ public class CRUDUtils {
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
+    private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname," +
+            " balance) VALUES (?, ?, ?, ?, ?)";
 
     public static User getUser(String mail, String password, Connection connection) {
         User user = null;
@@ -83,5 +85,22 @@ public class CRUDUtils {
             System.out.println(e.getMessage());
         }
         return product;
+    }
+
+    public static User registerUser(String email, String name, String surname, String password, String balance, Connection connection) {
+        User user = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, surname);
+            preparedStatement.setString(5, balance);
+            preparedStatement.execute();
+            user = getUser(email, password, connection);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
     }
 }
