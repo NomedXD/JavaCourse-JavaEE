@@ -15,11 +15,7 @@ import java.sql.Connection;
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection = connectionPool.getConnection();
-        req.setAttribute("product", CRUDUtils.getProductByItsId(Integer.parseInt(req.getParameter("productid")),
-                connection));
-        connectionPool.closeConnection(connection);
+        req.setAttribute("product", CRUDUtils.getProductByItsId(Integer.parseInt(req.getParameter("productid"))));
         getServletContext().getRequestDispatcher("/product.jsp").forward(req, resp);
     }
 

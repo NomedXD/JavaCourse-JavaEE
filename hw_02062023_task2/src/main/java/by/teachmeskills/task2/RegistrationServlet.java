@@ -17,13 +17,10 @@ import java.sql.Connection;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (((User) req.getSession().getAttribute("currentUser")).getMail().equals("None")) {
+        if (((User) req.getSession().getAttribute("currentUser")).getMail() == null) {
             getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
         } else {
-            ConnectionPool connectionPool = ConnectionPool.getInstance();
-            Connection connection = connectionPool.getConnection();
-            req.setAttribute("categories", CRUDUtils.getAllCategories(connection));
-            connectionPool.closeConnection(connection);
+            req.setAttribute("categories", CRUDUtils.getAllCategories());
             getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
         }
     }
@@ -36,17 +33,13 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String repeatPassword = req.getParameter("repeatPassword");
         if (ValidatorUtils.validateRegistration(email, name, surname, password, repeatPassword)) {
-            ConnectionPool connectionPool = ConnectionPool.getInstance();
-            Connection connection = connectionPool.getConnection();
-            User user = CRUDUtils.registerUser(email, name, surname, password, "0$", connection);
+            User user = CRUDUtils.saveUser(email, name, surname, password, "0$");
             if (user != null) {
                 HttpSession session = req.getSession();
                 session.setAttribute("currentUser", user);
-                req.setAttribute("categories", CRUDUtils.getAllCategories(connection));
-                connectionPool.closeConnection(connection);
+                req.setAttribute("categories", CRUDUtils.getAllCategories());
                 getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
             } else {
-                connectionPool.closeConnection(connection);
                 getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
             }
         }

@@ -15,11 +15,7 @@ import java.sql.Connection;
 public class CategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection = connectionPool.getConnection();
-        req.setAttribute("products", CRUDUtils.getProductsByCategory(Integer.parseInt(req.getParameter("categoryid")),
-                connection));
-        connectionPool.closeConnection(connection);
+        req.setAttribute("products", CRUDUtils.getProductsByCategory(Integer.parseInt(req.getParameter("categoryid"))));
         getServletContext().getRequestDispatcher("/category.jsp").forward(req, resp);
     }
 

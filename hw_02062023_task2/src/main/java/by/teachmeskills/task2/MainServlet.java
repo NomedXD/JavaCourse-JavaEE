@@ -17,13 +17,10 @@ import java.sql.Connection;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (((User) req.getSession().getAttribute("currentUser")).getMail().equals("None")) {
+        if (((User) req.getSession().getAttribute("currentUser")).getMail() == null) {
             getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         } else {
-            ConnectionPool connectionPool = ConnectionPool.getInstance();
-            Connection connection = connectionPool.getConnection();
-            req.setAttribute("categories", CRUDUtils.getAllCategories(connection));
-            connectionPool.closeConnection(connection);
+            req.setAttribute("categories", CRUDUtils.getAllCategories());
             getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
         }
     }
@@ -32,17 +29,13 @@ public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String mail = req.getParameter("mail");
         String password = req.getParameter("password");
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection = connectionPool.getConnection();
-        User user = CRUDUtils.getUser(mail, password, connection);
+        User user = CRUDUtils.getUser(mail, password);
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", user);
-            req.setAttribute("categories", CRUDUtils.getAllCategories(connection));
-            connectionPool.closeConnection(connection);
+            req.setAttribute("categories", CRUDUtils.getAllCategories());
             getServletContext().getRequestDispatcher("/shop.jsp").forward(req, resp);
         } else {
-            connectionPool.closeConnection(connection);
             getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
