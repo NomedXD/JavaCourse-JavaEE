@@ -13,31 +13,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CRUDUtils {
-    private static final String GET_USER_QUERY = "SELECT * FROM users WHERE login = ? AND password = ?";
+    private static final ConnectionPool connectionPool;
+    private static final String GET_USER_QUERY = "SELECT * FROM users WHERE mail = ? AND password = ?";
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
+    private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname," +
+            " balance) VALUES (?, ?, ?, ?, ?)";
 
-    public static User getUser(String login, String password, Connection connection) {
+    static {
+        connectionPool = ConnectionPool.getInstance();
+    }
+
+    public static User getUser(String mail, String password) {
         User user = null;
+        Connection connection = connectionPool.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
-            preparedStatement.setString(1, login);
+            preparedStatement.setString(1, mail);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                user = new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
+                user = new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
                         resultSet.getString("name"), resultSet.getString("surname"),
                         resultSet.getString("balance"));
             }
             return user;
         } catch (SQLException e) {
             return null;
+        } finally {
+            connectionPool.closeConnection(connection);
         }
     }
 
-    public static List<Category> getAllCategories(Connection connection) {
+    public static List<Category> getAllCategories() {
         List<Category> categoryArrayList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_All_CATEGORIES);
@@ -48,11 +59,14 @@ public class CRUDUtils {
             return categoryArrayList;
         } catch (SQLException e) {
             return categoryArrayList;
+        } finally {
+            connectionPool.closeConnection(connection);
         }
     }
 
-    public static List<Product> getProductsByCategory(int categoryId, Connection connection) {
+    public static List<Product> getProductsByCategory(int categoryId) {
         List<Product> productList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
             preparedStatement.setInt(1, categoryId);
@@ -65,11 +79,14 @@ public class CRUDUtils {
             return productList;
         } catch (SQLException e) {
             return productList;
+        } finally {
+            connectionPool.closeConnection(connection);
         }
     }
 
-    public static Product getProductByItsId(int id, Connection connection) {
+    public static Product getProductByItsId(int id) {
         Product product = null;
+        Connection connection = connectionPool.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT_BY_ITS_ID);
             preparedStatement.setInt(1, id);
@@ -79,9 +96,30 @@ public class CRUDUtils {
                         resultSet.getString("imagepath"), resultSet.getString("description"),
                         resultSet.getInt("categoryid"), resultSet.getString("price"));
             }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        connectionPool.closeConnection(connection);
         return product;
+    }
+
+    public static User saveUser(String email, String name, String surname, String password, String balance) {
+        User user = null;
+        Connection connection = connectionPool.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, surname);
+            preparedStatement.setString(5, balance);
+            preparedStatement.execute();
+            user = getUser(email, password);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        connectionPool.closeConnection(connection);
+        return user;
     }
 }
