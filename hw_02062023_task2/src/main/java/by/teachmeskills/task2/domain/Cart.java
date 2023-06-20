@@ -17,15 +17,15 @@ public class Cart {
 
     public void addProduct(Product product) {
         products.put(product.getId(), product);
-        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$","")) +
-                Float.parseFloat(product.getPrice().replaceAll("\\$","")) + "$";
+        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$", "")) +
+                Float.parseFloat(product.getPrice().replaceAll("\\$", "")) + "$";
     }
 
     public void removeProduct(int productId) {
         Product product = products.get(productId);
         products.remove(productId);
-        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$","")) -
-                Float.parseFloat(product.getPrice().replaceAll("\\$","")) + "$";
+        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$", "")) -
+                Float.parseFloat(product.getPrice().replaceAll("\\$", "")) + "$";
     }
 
     public List<Product> getProducts() {
@@ -35,7 +35,8 @@ public class Cart {
     public String getTotalPrice() {
         return totalPrice;
     }
-    public int getTotalSize(){
+
+    public int getTotalSize() {
         return products.size();
     }
 
