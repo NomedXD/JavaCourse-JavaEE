@@ -1,8 +1,8 @@
 package by.teachmeskills.task2.db;
 
-import by.teachmeskills.task2.Category;
-import by.teachmeskills.task2.Product;
-import by.teachmeskills.task2.User;
+import by.teachmeskills.task2.domain.Category;
+import by.teachmeskills.task2.domain.Product;
+import by.teachmeskills.task2.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

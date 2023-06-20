@@ -1,6 +1,6 @@
 package by.teachmeskills.task2.listeners;
 
-import by.teachmeskills.task2.User;
+import by.teachmeskills.task2.domain.User;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;

@@ -9,11 +9,11 @@
         <div class="navb-items d-none d-xl-flex">
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop">Home</a>
+                <a href="${pageContext.request.contextPath}/shop?command=shop_redirect">Home</a>
             </div>
 
             <div class="item">
-                <a href="#">Cart</a>
+                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart <div class="circle">${sessionScope.cart.getTotalSize()}</div></a>
             </div>
 
             <div class="item">

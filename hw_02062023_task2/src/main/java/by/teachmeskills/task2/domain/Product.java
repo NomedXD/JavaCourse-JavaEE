@@ -1,4 +1,4 @@
-package by.teachmeskills.task2;
+package by.teachmeskills.task2.domain;
 
 public class Product {
     private final int id;

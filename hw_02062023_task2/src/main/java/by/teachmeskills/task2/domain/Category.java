@@ -1,4 +1,4 @@
-package by.teachmeskills.task2;
+package by.teachmeskills.task2.domain;
 
 public class Category {
     private final int id;

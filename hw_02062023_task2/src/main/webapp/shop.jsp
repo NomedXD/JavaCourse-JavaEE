@@ -19,7 +19,8 @@
             <img class="shopImg" src="${item.getImagepath()}">
             <h3>${item.getName()}</h3>
             <p>${item.getSometext()}</p>
-            <form action="${pageContext.request.contextPath}/category">
+            <form action="${pageContext.request.contextPath}/shop">
+                <input type="hidden" name="command" value="category_redirect"/>
                 <button class="buy-1" name="categoryid" value="${item.getId()}">Buy now</button>
             </form>
         </div>
