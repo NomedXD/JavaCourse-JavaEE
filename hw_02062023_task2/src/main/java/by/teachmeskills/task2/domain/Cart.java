@@ -8,31 +8,29 @@ import java.util.Map;
 public class Cart {
 
     private final Map<Integer, Product> products;
-    private String totalPrice;
+    private float totalPrice;
 
     public Cart() {
         this.products = new HashMap<>();
-        this.totalPrice = "0$";
+        this.totalPrice = 0;
     }
 
     public void addProduct(Product product) {
         products.put(product.getId(), product);
-        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$", "")) +
-                Float.parseFloat(product.getPrice().replaceAll("\\$", "")) + "$";
+        totalPrice += product.getPrice();
     }
 
     public void removeProduct(int productId) {
         Product product = products.get(productId);
         products.remove(productId);
-        totalPrice = Float.parseFloat(totalPrice.replaceAll("\\$", "")) -
-                Float.parseFloat(product.getPrice().replaceAll("\\$", "")) + "$";
+        totalPrice -= product.getPrice();
     }
 
     public List<Product> getProducts() {
         return new ArrayList<>(products.values());
     }
 
-    public String getTotalPrice() {
+    public float getTotalPrice() {
         return totalPrice;
     }
 

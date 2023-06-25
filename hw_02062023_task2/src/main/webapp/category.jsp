@@ -30,7 +30,7 @@
         </div>
         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
             <div class="d-flex flex-row align-items-center">
-                <h4 class="mr-1">${product.getPrice()}</h4>
+                <h4 class="mr-1">${product.getPrice()}$</h4>
             </div>
             <h6 class="text-success">Available</h6>
             <div class="d-flex flex-column mt-4">
