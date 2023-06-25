@@ -1,4 +1,4 @@
-package by.teachmeskills.task2;
+package by.teachmeskills.task2.domain;
 
 public class User {
     private int id;
@@ -8,9 +8,10 @@ public class User {
     private String surname;
     private String currentBalance;
 
-    public User(){
+    public User() {
 
     }
+
     public User(int id, String mail, String password, String name, String surname, String currentBalance) {
         this.id = id;
         this.mail = mail;
@@ -20,11 +21,27 @@ public class User {
         this.currentBalance = currentBalance;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getMail() {
         return mail;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getCurrentBalance() {
+        return currentBalance;
     }
 }

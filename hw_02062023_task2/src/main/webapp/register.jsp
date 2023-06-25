@@ -13,8 +13,9 @@
 
 <body>
 <div class="login-dark">
-    <form action="register" method="post" class="js-form">
+    <form action="shop" method="post" class="js-form">
         <h2 class="sr-only">Login Form</h2>
+        <input type="hidden" name="command" value="register"/>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
         <div class="form-group">
             <input class="form-control js-input-email" name="mail" placeholder="Enter email">

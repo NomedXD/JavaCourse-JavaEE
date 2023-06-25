@@ -58,7 +58,8 @@
                 <hr/>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="#" class="btn btn-success btn-lg">Add to cart ${requestScope.product.getPrice()}</a>
+                        <a href="${pageContext.request.contextPath}
+                /shop?command=add_product_to_cart&productid=${requestScope.product.getId()}" class="btn btn-success btn-lg">Add to cart ${requestScope.product.getPrice()}$</a>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group pull-right">

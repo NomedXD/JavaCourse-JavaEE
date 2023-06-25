@@ -1,4 +1,4 @@
-package by.teachmeskills.task2;
+package by.teachmeskills.task2.domain;
 
 public class Product {
     private final int id;
@@ -6,9 +6,9 @@ public class Product {
     private final String imagepath;
     private final String description;
     private final int categoryid;
-    private final String price;
+    private final float price;
 
-    public Product(int id, String name, String imagepath, String description, int categoryid, String price) {
+    public Product(int id, String name, String imagepath, String description, int categoryid, float price) {
         this.id = id;
         this.name = name;
         this.imagepath = imagepath;
@@ -37,7 +37,7 @@ public class Product {
         return categoryid;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 }

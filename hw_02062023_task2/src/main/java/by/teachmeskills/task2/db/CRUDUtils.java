@@ -1,8 +1,8 @@
 package by.teachmeskills.task2.db;
 
-import by.teachmeskills.task2.Category;
-import by.teachmeskills.task2.Product;
-import by.teachmeskills.task2.User;
+import by.teachmeskills.task2.domain.Category;
+import by.teachmeskills.task2.domain.Product;
+import by.teachmeskills.task2.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,7 +74,7 @@ public class CRUDUtils {
             while (resultSet.next()) {
                 productList.add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("description"),
-                        resultSet.getInt("categoryid"), resultSet.getString("price")));
+                        resultSet.getInt("categoryid"), resultSet.getFloat("price")));
             }
             return productList;
         } catch (SQLException e) {
@@ -94,7 +94,7 @@ public class CRUDUtils {
             if (resultSet.next()) {
                 product = new Product(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getString("imagepath"), resultSet.getString("description"),
-                        resultSet.getInt("categoryid"), resultSet.getString("price"));
+                        resultSet.getInt("categoryid"), resultSet.getFloat("price"));
             }
 
         } catch (SQLException e) {
