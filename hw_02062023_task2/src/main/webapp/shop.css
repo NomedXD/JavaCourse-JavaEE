@@ -10,7 +10,7 @@
     font-size: 30px;
     margin: 0;
     padding-top: 10px;
-    color: rgba(41, 128, 239, 0.7);
+    color: rgb(231, 11, 11);
 }
 
 .gallery {
@@ -32,9 +32,9 @@
     border-radius: 20px;
     cursor: pointer;
     padding-top: 10px;
-    box-shadow: 0 14px 28px rgba(67, 251, 245, 0.25), 0 10px 10px rgba(67, 208, 251, 0.22);
+    box-shadow: 0 14px 28px rgb(208, 83, 135), 0 10px 10px rgb(208, 70, 150);
     transition: .4s;
-    background: #24262b;
+    background: #FCB4D5;
 }
 
 .content:hover {
@@ -53,7 +53,7 @@
 
 .content p {
     text-align: center;
-    color: rgba(41, 128, 239, 0.7);
+    color: rgb(231, 11, 11);
     padding-top: 08px;
 
 }
@@ -61,7 +61,7 @@
 .content h6 {
     font-size: 26px;
     text-align: center;
-    color: rgba(41, 128, 239, 0.7);
+    color: rgb(231, 11, 11);
     margin: 0;
 
 }
@@ -108,7 +108,7 @@
 }
 
 .buy-1 {
-    background: rgba(41, 128, 239, 0.7);
+    background: rgba(133, 238, 225, 0.7);
 }
 
 .buy-2 {

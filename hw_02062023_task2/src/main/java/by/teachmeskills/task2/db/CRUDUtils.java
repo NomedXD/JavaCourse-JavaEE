@@ -18,8 +18,8 @@ public class CRUDUtils {
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
-    private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname," +
-            " balance) VALUES (?, ?, ?, ?, ?)";
+    private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname, date," +
+            " balance) VALUES (?, ?, ?, ?, ?, ?)";
 
     static {
         connectionPool = ConnectionPool.getInstance();
@@ -35,7 +35,7 @@ public class CRUDUtils {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user = new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
-                        resultSet.getString("name"), resultSet.getString("surname"),
+                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date"),
                         resultSet.getString("balance"));
             }
             return user;
@@ -104,7 +104,7 @@ public class CRUDUtils {
         return product;
     }
 
-    public static User saveUser(String email, String name, String surname, String password, String balance) {
+    public static User saveUser(String email, String name, String surname, String password, String date, String balance) {
         User user = null;
         Connection connection = connectionPool.getConnection();
         try {
@@ -113,7 +113,8 @@ public class CRUDUtils {
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, name);
             preparedStatement.setString(4, surname);
-            preparedStatement.setString(5, balance);
+            preparedStatement.setDate(5, java.sql.Date.valueOf(date));
+            preparedStatement.setString(6, balance);
             preparedStatement.execute();
             user = getUser(email, password);
         } catch (SQLException e) {

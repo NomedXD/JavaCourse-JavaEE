@@ -4,6 +4,7 @@ public enum RequestParamsEnum {
     MAIL("mail"),
     NAME("name"),
     SURNAME("surname"),
+    DATE("date"),
     PASSWORD("password"),
     REPEATPASSWORD("repeatPassword"),
     COMMAND("command"),
