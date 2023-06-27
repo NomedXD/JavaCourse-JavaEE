@@ -3,7 +3,7 @@
 <head>
     <title>Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="account.css.css">
+    <link rel="stylesheet" href="account.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
@@ -26,9 +26,9 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                  class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>John Doe</h4>
+                                <h4>${sessionScope.currentUser.getName()}</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                <p class="text-muted font-size-sm">${sessionScope.currentUser.getStreet()}, ${sessionScope.currentUser.getAccommodationNumber()}, ${sessionScope.currentUser.getFlatNumber()}</p>
                                 <button class="btn btn-primary">Follow</button>
                                 <button class="btn btn-outline-primary">Message</button>
                             </div>
@@ -44,7 +44,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Kenneth Valdez
+                                ${sessionScope.currentUser.getName()} ${sessionScope.currentUser.getSurname()}
                             </div>
                         </div>
                         <hr>
@@ -53,16 +53,16 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                fip@jukmuh.al
+                                ${sessionScope.currentUser.getMail()}
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Phone</h6>
+                                <h6 class="mb-0">Birthday</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (239) 816-9029
+                                ${sessionScope.currentUser.getDate()}
                             </div>
                         </div>
                         <hr>
@@ -71,23 +71,78 @@
                                 <h6 class="mb-0">Mobile</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (320) 380-4539
+                                ${sessionScope.currentUser.getMobile()}
+                                <form action="shop" method="post">
+                                    <div class="d-flex">
+                                        <div class="d-inline-block">
+                                            <input type="text" name="mobile" class="form-control">
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <button class="btn btn-info " type="submit">Edit</button>
+                                        </div>
+                                        <input type="hidden" name="command" value="change_user_mobile"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
+                                <h6 class="mb-0">Address: Street</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
+                                ${sessionScope.currentUser.getStreet()}
+                                <form action="shop" method="post">
+                                    <div class="d-flex">
+                                        <div class="d-inline-block">
+                                            <input type="text" name="street" class="form-control">
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <button class="btn btn-info " type="submit">Edit</button>
+                                        </div>
+                                        <input type="hidden" name="command" value="change_user_street"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-info " target="__blank"
-                                   href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address: Accommodation number</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                ${sessionScope.currentUser.getAccommodationNumber()}
+                                <form action="shop" method="post">
+                                    <div class="d-flex">
+                                        <div class="d-inline-block">
+                                            <input type="text" name="accommodationNumber" class="form-control">
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <button class="btn btn-info " type="submit">Edit</button>
+                                        </div>
+                                        <input type="hidden" name="command" value="change_user_accommodation_number"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address: Flat number</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                ${sessionScope.currentUser.getFlatNumber()}
+                                <form action="shop" method="post">
+                                    <div class="d-flex">
+                                        <div class="d-inline-block">
+                                            <input type="text" name="flatNumber" class="form-control">
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <button class="btn btn-info " type="submit">Edit</button>
+                                        </div>
+                                        <input type="hidden" name="command" value="change_user_flat_number"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -9,13 +9,17 @@ public class User {
     private String name;
     private String surname;
     private Date date;
-    private String currentBalance;
+    private float currentBalance;
+    private String mobile;
+    private String street;
+    private String accommodationNumber;
+    private String flatNumber;
 
     public User() {
 
     }
 
-    public User(int id, String mail, String password, String name, String surname, Date date, String currentBalance) {
+    public User(int id, String mail, String password, String name, String surname, Date date, float currentBalance, String mobile, String street, String accommodationNumber, String flatNumber) {
         this.id = id;
         this.mail = mail;
         this.password = password;
@@ -23,6 +27,10 @@ public class User {
         this.surname = surname;
         this.date = date;
         this.currentBalance = currentBalance;
+        this.mobile = mobile;
+        this.street = street;
+        this.accommodationNumber = accommodationNumber;
+        this.flatNumber = flatNumber;
     }
 
     public int getId() {
@@ -49,7 +57,23 @@ public class User {
         return date;
     }
 
-    public String getCurrentBalance() {
+    public float getCurrentBalance() {
         return currentBalance;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getAccommodationNumber() {
+        return accommodationNumber;
+    }
+
+    public String getFlatNumber() {
+        return flatNumber;
     }
 }

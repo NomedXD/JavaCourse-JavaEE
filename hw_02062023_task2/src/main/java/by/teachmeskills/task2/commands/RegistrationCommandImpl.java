@@ -22,7 +22,7 @@ public class RegistrationCommandImpl implements BaseCommand {
         String repeatPassword = request.getParameter(RequestParamsEnum.REPEATPASSWORD.getValue());
         String date = request.getParameter(RequestParamsEnum.DATE.getValue());
         if (ValidatorUtils.validateRegistration(email, name, surname, password, repeatPassword)) {
-            User user = CRUDUtils.saveUser(email, name, surname, password, date, "0$");
+            User user = CRUDUtils.saveUser(email, name, surname, password, date, 0);
             if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute(RequestParamsEnum.CURRENT_USER.getValue(), user);

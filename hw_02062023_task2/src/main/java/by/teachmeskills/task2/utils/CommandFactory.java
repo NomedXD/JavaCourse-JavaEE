@@ -2,6 +2,10 @@ package by.teachmeskills.task2.utils;
 
 import by.teachmeskills.task2.commands.AddProductToCardCommandImpl;
 import by.teachmeskills.task2.commands.BaseCommand;
+import by.teachmeskills.task2.commands.ChangeUserAccommodationCommandImpl;
+import by.teachmeskills.task2.commands.ChangeUserFlatNumberCommandImpl;
+import by.teachmeskills.task2.commands.ChangeUserMobileCommandImpl;
+import by.teachmeskills.task2.commands.ChangeUserStreetCommandImpl;
 import by.teachmeskills.task2.commands.DeleteProductFromCartCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToAccountCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToCartCommandImpl;
@@ -32,6 +36,10 @@ public class CommandFactory {
         COMMAND_LIST.put(CommandsEnum.DELETE_PRODUCT_FROM_CART.getCommand(), new DeleteProductFromCartCommandImpl());
         COMMAND_LIST.put(CommandsEnum.REDIRECT_TO_CART_COMMAND.getCommand(), new RedirectToCartCommandImpl());
         COMMAND_LIST.put(CommandsEnum.REDIRECT_TO_ACCOUNT_COMMAND.getCommand(), new RedirectToAccountCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.CHANGE_USER_MOBILE_COMMAND.getCommand(), new ChangeUserMobileCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.CHANGE_USER_STREET_COMMAND.getCommand(), new ChangeUserStreetCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.CHANGE_USER_ACCOMMODATION_NUMBER_COMMAND.getCommand(), new ChangeUserAccommodationCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.CHANGE_USER_FLAT_NUMBER_COMMAND.getCommand(), new ChangeUserFlatNumberCommandImpl());
     }
 
     public static BaseCommand defineCommand(HttpServletRequest request) {
