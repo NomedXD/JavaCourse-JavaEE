@@ -23,10 +23,7 @@ public class CRUDUtils {
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
     private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname, date," +
             " balance) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String CHANGE_USER_MOBILE = "UPDATE users SET mobile = ? WHERE mail = ? AND password = ?";
-    private static final String CHANGE_USER_STREET = "UPDATE users SET street = ? WHERE mail = ? AND password = ?";
-    private static final String CHANGE_USER_ACCOMMODATION_NUMBER = "UPDATE users SET accommodation_number = ? WHERE mail = ? AND password = ?";
-    private static final String CHANGE_USER_FLAT_NUMBER = "UPDATE users SET flat_number = ? WHERE mail = ? AND password = ?";
+    private static final String UPDATE_USER_DATA = "UPDATE users SET mobile = ?, street = ?, accommodation_number = ?, flat_number = ? WHERE id = ?";
 
     static {
         connectionPool = ConnectionPool.getInstance();
@@ -139,14 +136,16 @@ public class CRUDUtils {
         }
     }
 
-    public static User updateUserMobile(User user, String mobile) {
+    public static User updateUserData(User user) {
         Connection connection = connectionPool.getConnection();
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement(CHANGE_USER_MOBILE);
-            preparedStatement.setString(1, mobile);
-            preparedStatement.setString(2, user.getMail());
-            preparedStatement.setString(3, user.getPassword());
+            preparedStatement = connection.prepareStatement(UPDATE_USER_DATA);
+            preparedStatement.setString(1, user.getMobile());
+            preparedStatement.setString(2, user.getStreet());
+            preparedStatement.setString(3, user.getAccommodationNumber());
+            preparedStatement.setString(4, user.getFlatNumber());
+            preparedStatement.setInt(5, user.getId());
             preparedStatement.executeUpdate();
             user = getUser(user.getMail(), user.getPassword());
             return user;
@@ -156,64 +155,5 @@ public class CRUDUtils {
         } finally {
             connectionPool.closeConnection(connection);
         }
-    }
-
-    public static User updateUserStreetAddress(User user, String street) {
-        Connection connection = connectionPool.getConnection();
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(CHANGE_USER_STREET);
-            preparedStatement.setString(1, street);
-            preparedStatement.setString(2, user.getMail());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.executeUpdate();
-            user = getUser(user.getMail(), user.getPassword());
-            return user;
-        } catch (SQLException e) {
-            logger.warn("SQLException while saving user. Most likely request is wrong");
-            return user;
-        } finally {
-            connectionPool.closeConnection(connection);
-        }
-    }
-
-    public static User updateUserAccommodationNumberAddress(User user, String accommodation_number) {
-        Connection connection = connectionPool.getConnection();
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(CHANGE_USER_ACCOMMODATION_NUMBER);
-            preparedStatement.setString(1, accommodation_number);
-            preparedStatement.setString(2, user.getMail());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.executeUpdate();
-            user = getUser(user.getMail(), user.getPassword());
-            return user;
-        } catch (SQLException e) {
-            logger.warn("SQLException while saving user. Most likely request is wrong");
-            return user;
-        } finally {
-            connectionPool.closeConnection(connection);
-        }
-
-    }
-
-    public static User updateUserFlatNumberAddress(User user, String flat_number) {
-        Connection connection = connectionPool.getConnection();
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(CHANGE_USER_FLAT_NUMBER);
-            preparedStatement.setString(1, flat_number);
-            preparedStatement.setString(2, user.getMail());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.executeUpdate();
-            user = getUser(user.getMail(), user.getPassword());
-            return user;
-        } catch (SQLException e) {
-            logger.warn("SQLException while saving user. Most likely request is wrong");
-            return user;
-        } finally {
-            connectionPool.closeConnection(connection);
-        }
-
     }
 }

@@ -66,83 +66,68 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Mobile</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getMobile()}
-                                <form action="shop" method="post">
+                        <form action="shop" method="post" id="updateUser">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Mobile</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    ${sessionScope.currentUser.getMobile()}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="mobile" class="form-control">
                                         </div>
-                                        <div class="d-inline-block">
-                                            <button class="btn btn-info " type="submit">Edit</button>
-                                        </div>
-                                        <input type="hidden" name="command" value="change_user_mobile"/>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address: Street</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getStreet()}
-                                <form action="shop" method="post">
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address: Street</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    ${sessionScope.currentUser.getStreet()}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="street" class="form-control">
                                         </div>
-                                        <div class="d-inline-block">
-                                            <button class="btn btn-info " type="submit">Edit</button>
-                                        </div>
-                                        <input type="hidden" name="command" value="change_user_street"/>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address: Accommodation number</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getAccommodationNumber()}
-                                <form action="shop" method="post">
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address: Accommodation number</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    ${sessionScope.currentUser.getAccommodationNumber()}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="accommodationNumber" class="form-control">
                                         </div>
-                                        <div class="d-inline-block">
-                                            <button class="btn btn-info " type="submit">Edit</button>
-                                        </div>
-                                        <input type="hidden" name="command" value="change_user_accommodation_number"/>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address: Flat number</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getFlatNumber()}
-                                <form action="shop" method="post">
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address: Flat number</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    ${sessionScope.currentUser.getFlatNumber()}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="flatNumber" class="form-control">
                                         </div>
-                                        <div class="d-inline-block">
-                                            <button class="btn btn-info " type="submit">Edit</button>
-                                        </div>
-                                        <input type="hidden" name="command" value="change_user_flat_number"/>
                                     </div>
-                                </form>
+                                </div>
+                            </div>
+                            <input type="hidden" name="command" value="update_user_data"/>
+                        </form>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-info " type="submit" form="updateUser">Edit</button>
                             </div>
                         </div>
                     </div>

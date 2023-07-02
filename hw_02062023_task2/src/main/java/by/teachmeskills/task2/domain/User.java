@@ -76,4 +76,5 @@ public class User {
     public String getFlatNumber() {
         return flatNumber;
     }
+
 }
