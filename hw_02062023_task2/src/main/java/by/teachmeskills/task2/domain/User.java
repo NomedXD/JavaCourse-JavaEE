@@ -2,8 +2,7 @@ package by.teachmeskills.task2.domain;
 
 import java.util.Date;
 
-public class User {
-    private int id;
+public class User extends BaseEntity{
     private String mail;
     private String password;
     private String name;
@@ -31,6 +30,15 @@ public class User {
         this.street = street;
         this.accommodationNumber = accommodationNumber;
         this.flatNumber = flatNumber;
+    }
+
+    public User(String mail, String password, String name, String surname, Date date, float currentBalance){
+        this.mail = mail;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.date = date;
+        this.currentBalance = currentBalance;
     }
 
     public int getId() {

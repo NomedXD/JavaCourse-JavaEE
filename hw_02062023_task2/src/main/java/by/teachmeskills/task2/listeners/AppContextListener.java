@@ -1,6 +1,6 @@
 package by.teachmeskills.task2.listeners;
 
-import by.teachmeskills.task2.db.ConnectionPool;
+import by.teachmeskills.task2.repositories.ConnectionPool;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;

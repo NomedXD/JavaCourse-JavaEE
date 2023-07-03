@@ -1,9 +1,10 @@
 package by.teachmeskills.task2.commands;
 
-import by.teachmeskills.task2.db.CRUDUtils;
 import by.teachmeskills.task2.domain.User;
 import by.teachmeskills.task2.enums.PagesPathEnum;
 import by.teachmeskills.task2.enums.RequestParamsEnum;
+import by.teachmeskills.task2.services.UserService;
+import by.teachmeskills.task2.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -28,7 +29,8 @@ public class UpdateUserDataCommandImpl implements BaseCommand {
         User updatedUser = new User(user.getId(), user.getMail(), user.getPassword(), user.getName(), user.getSurname(),
                 user.getDate(), user.getCurrentBalance(), params.get(RequestParamsEnum.MOBILE.getValue()), params.get(RequestParamsEnum.STREET.getValue()),
                 params.get(RequestParamsEnum.ACCOMMODATION_NUMBER.getValue()), params.get(RequestParamsEnum.FLAT_NUMBER.getValue()));
-        user = CRUDUtils.updateUserData(updatedUser);
+        UserService userService = new UserServiceImpl();
+        user = userService.updateService(updatedUser);
         session.setAttribute(RequestParamsEnum.CURRENT_USER.getValue(), user);
         return PagesPathEnum.ACCOUNT_PAGE.getPath();
     }

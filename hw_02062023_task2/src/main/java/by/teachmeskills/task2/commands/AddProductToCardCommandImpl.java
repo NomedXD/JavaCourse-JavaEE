@@ -1,8 +1,9 @@
 package by.teachmeskills.task2.commands;
 
-import by.teachmeskills.task2.db.CRUDUtils;
 import by.teachmeskills.task2.domain.Cart;
 import by.teachmeskills.task2.domain.Product;
+import by.teachmeskills.task2.services.ProductService;
+import by.teachmeskills.task2.services.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -17,7 +18,8 @@ public class AddProductToCardCommandImpl implements BaseCommand {
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
-        Product product = CRUDUtils.getProductByItsId(productId);
+        ProductService productService = new ProductServiceImpl();
+        Product product = productService.getProductByItsIdService(productId);
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {
             cart.addProduct(product);

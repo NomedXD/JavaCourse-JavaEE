@@ -1,4 +1,4 @@
-package by.teachmeskills.task2.db;
+package by.teachmeskills.task2.repositories;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
