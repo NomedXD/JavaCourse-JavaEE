@@ -4,6 +4,7 @@ public enum RequestParamsEnum {
     MAIL("mail"),
     NAME("name"),
     SURNAME("surname"),
+    DATE("date"),
     PASSWORD("password"),
     REPEATPASSWORD("repeatPassword"),
     COMMAND("command"),
@@ -14,8 +15,11 @@ public enum RequestParamsEnum {
     PRODUCT("product"),
     PRODUCTS("products"),
     PRODUCT_ID("productid"),
-    CURRENT_USER("currentUser");
-
+    CURRENT_USER("currentUser"),
+    MOBILE("mobile"),
+    STREET("street"),
+    ACCOMMODATION_NUMBER("accommodationNumber"),
+    FLAT_NUMBER("flatNumber");
 
     private final String value;
 

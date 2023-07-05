@@ -13,11 +13,13 @@
             </div>
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart <div class="circle">${sessionScope.cart.getTotalSize()}</div></a>
+                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart
+                    <div class="circle">${sessionScope.cart.getTotalSize()}</div>
+                </a>
             </div>
 
             <div class="item">
-                <a href="#">Account</a>
+                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_account">Account</a>
             </div>
 
             <div class="item">
