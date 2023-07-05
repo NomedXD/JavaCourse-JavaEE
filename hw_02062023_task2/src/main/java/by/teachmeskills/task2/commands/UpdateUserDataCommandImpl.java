@@ -25,7 +25,7 @@ public class UpdateUserDataCommandImpl implements BaseCommand {
         params.put(RequestParamsEnum.FLAT_NUMBER.getValue(), flatNumber);
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(RequestParamsEnum.CURRENT_USER.getValue());
-        validateInputs(params, user);
+        setInputs(params, user);
         User updatedUser = new User(user.getId(), user.getMail(), user.getPassword(), user.getName(), user.getSurname(),
                 user.getDate(), user.getCurrentBalance(), params.get(RequestParamsEnum.MOBILE.getValue()), params.get(RequestParamsEnum.STREET.getValue()),
                 params.get(RequestParamsEnum.ACCOMMODATION_NUMBER.getValue()), params.get(RequestParamsEnum.FLAT_NUMBER.getValue()));
@@ -35,7 +35,7 @@ public class UpdateUserDataCommandImpl implements BaseCommand {
         return PagesPathEnum.ACCOUNT_PAGE.getPath();
     }
 
-    private void validateInputs(Map<String, String> params, User user) {
+    private void setInputs(Map<String, String> params, User user) {
         for (var entry : params.entrySet()) {
             if (entry.getValue().equals("")) {
                 switch (entry.getKey()) {
