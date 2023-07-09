@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateUserDataCommandImpl implements BaseCommand {
+    private static final UserService userService = new UserServiceImpl();
+
     @Override
     public String execute(HttpServletRequest request) {
         Map<String, String> params = new HashMap<>();
@@ -29,8 +31,7 @@ public class UpdateUserDataCommandImpl implements BaseCommand {
         User updatedUser = new User(user.getId(), user.getMail(), user.getPassword(), user.getName(), user.getSurname(),
                 user.getDate(), user.getCurrentBalance(), params.get(RequestParamsEnum.MOBILE.getValue()), params.get(RequestParamsEnum.STREET.getValue()),
                 params.get(RequestParamsEnum.ACCOMMODATION_NUMBER.getValue()), params.get(RequestParamsEnum.FLAT_NUMBER.getValue()));
-        UserService userService = new UserServiceImpl();
-        user = userService.updateService(updatedUser);
+        user = userService.update(updatedUser);
         session.setAttribute(RequestParamsEnum.CURRENT_USER.getValue(), user);
         return PagesPathEnum.ACCOUNT_PAGE.getPath();
     }

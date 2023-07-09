@@ -7,10 +7,11 @@ import by.teachmeskills.task2.services.impl.CategoryServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class RedirectToShopPageCommandImpl implements BaseCommand {
+    private static final CategoryService categoryService = new CategoryServiceImpl();
+
     @Override
     public String execute(HttpServletRequest request) {
-        CategoryService categoryService = new CategoryServiceImpl();
-        request.setAttribute(RequestParamsEnum.CATEGORIES.getValue(), categoryService.readService());
+        request.setAttribute(RequestParamsEnum.CATEGORIES.getValue(), categoryService.read());
         return PagesPathEnum.SHOP_PAGE.getPath();
     }
 }

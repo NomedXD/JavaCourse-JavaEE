@@ -19,7 +19,7 @@ public class AddProductToCardCommandImpl implements BaseCommand {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
         ProductService productService = new ProductServiceImpl();
-        Product product = productService.getProductByItsIdService(productId);
+        Product product = productService.getProductById(productId);
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {
             cart.addProduct(product);

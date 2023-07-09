@@ -10,32 +10,27 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository = new UserRepositoryImpl();
     @Override
-    public User createService(User entity) {
+    public User create(User entity) {
+        return userRepository.create(entity);
+    }
+
+    @Override
+    public List<User> read() {
         return null;
     }
 
     @Override
-    public List<User> readService() {
-        return null;
-    }
-
-    @Override
-    public User updateService(User entity) {
+    public User update(User entity) {
        return userRepository.update(entity);
     }
 
     @Override
-    public void deleteService(int id) {
+    public void delete(int id) {
 
     }
 
     @Override
-    public User getUserService(String mail, String password) {
+    public User getUserByCredentials(String mail, String password) {
        return userRepository.getUser(mail,password);
-    }
-
-    @Override
-    public User saveUserService(String email, String name, String surname, String password, String date, float balance) {
-       return userRepository.saveUser(email,name,surname,password,date,balance);
     }
 }

@@ -7,10 +7,11 @@ import by.teachmeskills.task2.services.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class RedirectToCategoryCommandImpl implements BaseCommand {
+    private static final ProductService productService = new ProductServiceImpl();
+
     @Override
     public String execute(HttpServletRequest request) {
-        ProductService productService = new ProductServiceImpl();
-        request.setAttribute(RequestParamsEnum.PRODUCTS.getValue(), productService.getProductsByCategoryService(Integer.parseInt(request.getParameter(RequestParamsEnum.CATEGORYID.getValue()))));
+        request.setAttribute(RequestParamsEnum.PRODUCTS.getValue(), productService.getCategoryProducts(Integer.parseInt(request.getParameter(RequestParamsEnum.CATEGORYID.getValue()))));
         return PagesPathEnum.CATEGORY_PAGE.getPath();
     }
 }

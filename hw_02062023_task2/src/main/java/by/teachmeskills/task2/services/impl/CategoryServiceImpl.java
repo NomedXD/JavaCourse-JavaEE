@@ -10,22 +10,22 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository = new CategoryRepositoryImpl();
     @Override
-    public Category createService(Category entity) {
+    public Category create(Category entity) {
         return null;
     }
 
     @Override
-    public List<Category> readService() {
+    public List<Category> read() {
        return categoryRepository.read();
     }
 
     @Override
-    public Category updateService(Category entity) {
+    public Category update(Category entity) {
         return null;
     }
 
     @Override
-    public void deleteService(int id) {
+    public void delete(int id) {
 
     }
 }

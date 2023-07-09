@@ -1,7 +1,6 @@
 package by.teachmeskills.task2.repositories.impl;
 
 import by.teachmeskills.task2.domain.Product;
-import by.teachmeskills.task2.repositories.ConnectionPool;
 import by.teachmeskills.task2.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepositoryImpl implements ProductRepository {
-    private final static Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
+    private final static Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
 
@@ -76,7 +75,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             return product;
         } catch (SQLException e) {
             logger.warn("SQLException while getting product by it's id. Most likely request is wrong");
-            return null;
+            return product;
         } finally {
             connectionPool.closeConnection(connection);
         }

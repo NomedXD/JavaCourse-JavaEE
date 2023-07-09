@@ -10,32 +10,32 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository = new ProductRepositoryImpl();
     @Override
-    public Product createService(Product entity) {
+    public Product create(Product entity) {
         return null;
     }
 
     @Override
-    public List<Product> readService() {
+    public List<Product> read() {
         return null;
     }
 
     @Override
-    public Product updateService(Product entity) {
+    public Product update(Product entity) {
         return null;
     }
 
     @Override
-    public void deleteService(int id) {
+    public void delete(int id) {
 
     }
 
     @Override
-    public List<Product> getProductsByCategoryService(int categoryId) {
+    public List<Product> getCategoryProducts(int categoryId) {
         return productRepository.getProductsByCategory(categoryId);
     }
 
     @Override
-    public Product getProductByItsIdService(int id) {
+    public Product getProductById(int id) {
         return productRepository.getProductByItsId(id);
     }
 }

@@ -2,7 +2,6 @@ package by.teachmeskills.task2.repositories.impl;
 
 import by.teachmeskills.task2.domain.Category;
 import by.teachmeskills.task2.repositories.CategoryRepository;
-import by.teachmeskills.task2.repositories.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
-    private final static Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
+    private final static Logger logger = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
     private static final String GET_All_CATEGORIES = "SELECT * FROM categories";
     @Override
     public Category create(Category entity) {

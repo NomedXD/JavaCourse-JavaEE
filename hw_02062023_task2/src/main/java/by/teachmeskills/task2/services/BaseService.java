@@ -5,11 +5,11 @@ import by.teachmeskills.task2.domain.BaseEntity;
 import java.util.List;
 
 public interface BaseService<T extends BaseEntity> {
-    T createService(T entity);
+    T create(T entity);
 
-    List<T> readService();
+    List<T> read();
 
-    T updateService(T entity);
+    T update(T entity);
 
-    void deleteService(int id);
+    void delete(int id);
 }

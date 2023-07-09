@@ -1,26 +1,44 @@
 package by.teachmeskills.task2.repositories.impl;
 
 import by.teachmeskills.task2.domain.User;
-import by.teachmeskills.task2.repositories.ConnectionPool;
 import by.teachmeskills.task2.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
-    private final static Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
+    private final static Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
     private static final String GET_USER_QUERY = "SELECT * FROM users WHERE mail = ? AND password = ?";
     private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname, date," +
             " balance) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_USER_DATA = "UPDATE users SET mobile = ?, street = ?, accommodation_number = ?, flat_number = ? WHERE id = ?";
     @Override
     public User create(User entity) {
-        return null;
+        User user;
+        Connection connection = connectionPool.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER);
+            preparedStatement.setString(1, entity.getMail());
+            preparedStatement.setString(2, entity.getPassword());
+            preparedStatement.setString(3, entity.getName());
+            preparedStatement.setString(4, entity.getSurname());
+            preparedStatement.setDate(5, new Date(entity.getDate().getTime()));
+            preparedStatement.setFloat(6, entity.getCurrentBalance());
+            preparedStatement.execute();
+            user = getUser(entity.getMail(), entity.getPassword());
+            return user;
+        } catch (SQLException e) {
+            logger.warn("SQLException while saving user. Most likely request is wrong");
+            return null;
+        } finally {
+            connectionPool.closeConnection(connection);
+        }
     }
 
     @Override
@@ -74,29 +92,6 @@ public class UserRepositoryImpl implements UserRepository {
             return user;
         } catch (SQLException e) {
             logger.warn("SQLException while getting user. Most likely request is wrong");
-            return null;
-        } finally {
-            connectionPool.closeConnection(connection);
-        }
-    }
-
-    @Override
-    public User saveUser(String email, String name, String surname, String password, String date, float balance) {
-        User user;
-        Connection connection = connectionPool.getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-            preparedStatement.setString(3, name);
-            preparedStatement.setString(4, surname);
-            preparedStatement.setDate(5, java.sql.Date.valueOf(date));
-            preparedStatement.setFloat(6, balance);
-            preparedStatement.execute();
-            user = getUser(email, password);
-            return user;
-        } catch (SQLException e) {
-            logger.warn("SQLException while saving user. Most likely request is wrong");
             return null;
         } finally {
             connectionPool.closeConnection(connection);
