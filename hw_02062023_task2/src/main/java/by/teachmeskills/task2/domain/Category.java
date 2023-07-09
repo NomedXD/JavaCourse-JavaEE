@@ -1,9 +1,13 @@
 package by.teachmeskills.task2.domain;
 
 public class Category extends BaseEntity{
-    private final String name;
-    private final String imagepath;
-    private final String sometext;
+    private String name;
+    private String imagepath;
+    private String sometext;
+
+    public Category(){
+
+    }
 
     public Category(int id, String name, String imagepath, String sometext) {
         this.id = id;

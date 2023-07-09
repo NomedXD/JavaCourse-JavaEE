@@ -5,6 +5,7 @@ import by.teachmeskills.task2.domain.Product;
 import java.util.List;
 
 public interface ProductRepository extends BaseRepository<Product> {
-    List<Product> getProductsByCategory(int categoryId);
-    Product getProductByItsId(int id);
+    List<Product> getCategoryProducts(int categoryId);
+    Product getProductById(int id);
+    Product getProductByName(String name);
 }
