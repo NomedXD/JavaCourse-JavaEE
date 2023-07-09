@@ -10,14 +10,19 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     private final static Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
     private static final String GET_USER_QUERY = "SELECT * FROM users WHERE mail = ? AND password = ?";
+    private static final String GET_ALL_USERS = "SELECT * FROM users";
     private static final String REGISTER_USER = "INSERT INTO users(mail, password, name, surname, date," +
             " balance) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
     private static final String UPDATE_USER_DATA = "UPDATE users SET mobile = ?, street = ?, accommodation_number = ?, flat_number = ? WHERE id = ?";
+
     @Override
     public User create(User entity) {
         User user;
@@ -31,7 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setDate(5, new Date(entity.getDate().getTime()));
             preparedStatement.setFloat(6, entity.getCurrentBalance());
             preparedStatement.execute();
-            user = getUser(entity.getMail(), entity.getPassword());
+            user = getUserByCredentials(entity.getMail(), entity.getPassword());
             return user;
         } catch (SQLException e) {
             logger.warn("SQLException while saving user. Most likely request is wrong");
@@ -43,7 +48,25 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> read() {
-        return null;
+        List<User> userArrayList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(GET_ALL_USERS);
+            while (resultSet.next()) {
+                userArrayList.add(new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
+                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date"),
+                        resultSet.getFloat("balance"), resultSet.getString("mobile"),
+                        resultSet.getString("street"), resultSet.getString("accommodation_number"),
+                        resultSet.getString("flat_number")));
+            }
+            return userArrayList;
+        } catch (SQLException e) {
+            logger.warn("SQLException while getting users. Most likely request is wrong");
+            return userArrayList;
+        } finally {
+            connectionPool.closeConnection(connection);
+        }
     }
 
     @Override
@@ -58,7 +81,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(4, entity.getFlatNumber());
             preparedStatement.setInt(5, entity.getId());
             preparedStatement.executeUpdate();
-            entity = getUser(entity.getMail(), entity.getPassword());
+            entity = getUserByCredentials(entity.getMail(), entity.getPassword());
             return entity;
         } catch (SQLException e) {
             logger.warn("SQLException while saving user. Most likely request is wrong");
@@ -70,11 +93,21 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void delete(int id) {
-
+        Connection connection = connectionPool.getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(DELETE_USER);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.warn("SQLException while deleting user. Most likely request is wrong");
+        } finally {
+            connectionPool.closeConnection(connection);
+        }
     }
 
     @Override
-    public User getUser(String mail, String password) {
+    public User getUserByCredentials(String mail, String password) {
         User user = null;
         Connection connection = connectionPool.getConnection();
         try {

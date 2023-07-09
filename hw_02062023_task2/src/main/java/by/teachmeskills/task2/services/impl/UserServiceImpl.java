@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository = new UserRepositoryImpl();
+
     @Override
     public User create(User entity) {
         return userRepository.create(entity);
@@ -16,21 +17,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> read() {
-        return null;
+        return userRepository.read();
     }
 
     @Override
     public User update(User entity) {
-       return userRepository.update(entity);
+        return userRepository.update(entity);
     }
 
     @Override
     public void delete(int id) {
-
+        userRepository.delete(id);
     }
 
     @Override
     public User getUserByCredentials(String mail, String password) {
-       return userRepository.getUser(mail,password);
+        return userRepository.getUserByCredentials(mail, password);
     }
 }
