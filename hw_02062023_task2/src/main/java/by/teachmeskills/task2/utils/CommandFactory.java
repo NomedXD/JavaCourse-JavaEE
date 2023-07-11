@@ -8,8 +8,10 @@ import by.teachmeskills.task2.commands.RedirectToCartCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToCategoryCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToProductCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToRegistrationCommandImpl;
+import by.teachmeskills.task2.commands.RedirectToSearchCommandImpl;
 import by.teachmeskills.task2.commands.RedirectToShopPageCommandImpl;
 import by.teachmeskills.task2.commands.RegistrationCommandImpl;
+import by.teachmeskills.task2.commands.SearchProductsCommandImpl;
 import by.teachmeskills.task2.commands.SignInCommandImpl;
 import by.teachmeskills.task2.commands.UpdateUserDataCommandImpl;
 import by.teachmeskills.task2.enums.CommandsEnum;
@@ -34,6 +36,8 @@ public class CommandFactory {
         COMMAND_LIST.put(CommandsEnum.REDIRECT_TO_CART_COMMAND.getCommand(), new RedirectToCartCommandImpl());
         COMMAND_LIST.put(CommandsEnum.REDIRECT_TO_ACCOUNT_COMMAND.getCommand(), new RedirectToAccountCommandImpl());
         COMMAND_LIST.put(CommandsEnum.UPDATE_USER_DATA_COMMAND.getCommand(), new UpdateUserDataCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.REDIRECT_TO_SEARCH_COMMAND.getCommand(), new RedirectToSearchCommandImpl());
+        COMMAND_LIST.put(CommandsEnum.SEARCH_PRODUCTS_COMMAND.getCommand(), new SearchProductsCommandImpl());
     }
 
     public static BaseCommand defineCommand(HttpServletRequest request) {

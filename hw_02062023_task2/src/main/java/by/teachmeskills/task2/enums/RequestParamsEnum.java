@@ -19,8 +19,8 @@ public enum RequestParamsEnum {
     MOBILE("mobile"),
     STREET("street"),
     ACCOMMODATION_NUMBER("accommodationNumber"),
-    FLAT_NUMBER("flatNumber");
-
+    FLAT_NUMBER("flatNumber"),
+    SEARCH_FIELD("searchField");
     private final String value;
 
     RequestParamsEnum(String value) {
