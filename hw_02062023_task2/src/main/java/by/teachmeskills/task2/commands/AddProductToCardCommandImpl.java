@@ -13,12 +13,12 @@ import static by.teachmeskills.task2.enums.RequestParamsEnum.PRODUCT_ID;
 import static by.teachmeskills.task2.enums.RequestParamsEnum.SHOPPING_CART;
 
 public class AddProductToCardCommandImpl implements BaseCommand {
+    private static final ProductService productService = new ProductServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
-        ProductService productService = new ProductServiceImpl();
         Product product = productService.getProductById(productId);
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {
