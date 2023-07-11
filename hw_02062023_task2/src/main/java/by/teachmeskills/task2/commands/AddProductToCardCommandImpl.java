@@ -1,8 +1,9 @@
 package by.teachmeskills.task2.commands;
 
-import by.teachmeskills.task2.db.CRUDUtils;
 import by.teachmeskills.task2.domain.Cart;
 import by.teachmeskills.task2.domain.Product;
+import by.teachmeskills.task2.services.ProductService;
+import by.teachmeskills.task2.services.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -12,12 +13,13 @@ import static by.teachmeskills.task2.enums.RequestParamsEnum.PRODUCT_ID;
 import static by.teachmeskills.task2.enums.RequestParamsEnum.SHOPPING_CART;
 
 public class AddProductToCardCommandImpl implements BaseCommand {
+    private static final ProductService productService = new ProductServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
-        Product product = CRUDUtils.getProductByItsId(productId);
+        Product product = productService.getProductById(productId);
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {
             cart.addProduct(product);

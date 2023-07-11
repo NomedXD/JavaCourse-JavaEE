@@ -1,9 +1,10 @@
 package by.teachmeskills.task2.commands;
 
-import by.teachmeskills.task2.db.CRUDUtils;
 import by.teachmeskills.task2.domain.User;
 import by.teachmeskills.task2.enums.PagesPathEnum;
 import by.teachmeskills.task2.enums.RequestParamsEnum;
+import by.teachmeskills.task2.services.UserService;
+import by.teachmeskills.task2.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -11,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateUserDataCommandImpl implements BaseCommand {
+    private static final UserService userService = new UserServiceImpl();
+
     @Override
     public String execute(HttpServletRequest request) {
         Map<String, String> params = new HashMap<>();
@@ -24,16 +27,16 @@ public class UpdateUserDataCommandImpl implements BaseCommand {
         params.put(RequestParamsEnum.FLAT_NUMBER.getValue(), flatNumber);
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(RequestParamsEnum.CURRENT_USER.getValue());
-        validateInputs(params, user);
+        setInputs(params, user);
         User updatedUser = new User(user.getId(), user.getMail(), user.getPassword(), user.getName(), user.getSurname(),
                 user.getDate(), user.getCurrentBalance(), params.get(RequestParamsEnum.MOBILE.getValue()), params.get(RequestParamsEnum.STREET.getValue()),
                 params.get(RequestParamsEnum.ACCOMMODATION_NUMBER.getValue()), params.get(RequestParamsEnum.FLAT_NUMBER.getValue()));
-        user = CRUDUtils.updateUserData(updatedUser);
+        user = userService.update(updatedUser);
         session.setAttribute(RequestParamsEnum.CURRENT_USER.getValue(), user);
         return PagesPathEnum.ACCOUNT_PAGE.getPath();
     }
 
-    private void validateInputs(Map<String, String> params, User user) {
+    private void setInputs(Map<String, String> params, User user) {
         for (var entry : params.entrySet()) {
             if (entry.getValue().equals("")) {
                 switch (entry.getKey()) {

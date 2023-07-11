@@ -1,12 +1,15 @@
 package by.teachmeskills.task2.domain;
 
-public class Product {
-    private final int id;
-    private final String name;
-    private final String imagepath;
-    private final String description;
-    private final int categoryid;
-    private final float price;
+public class Product extends BaseEntity{
+    private String name;
+    private String imagepath;
+    private String description;
+    private int categoryid;
+    private float price;
+
+    public Product(){
+
+    }
 
     public Product(int id, String name, String imagepath, String description, int categoryid, float price) {
         this.id = id;
