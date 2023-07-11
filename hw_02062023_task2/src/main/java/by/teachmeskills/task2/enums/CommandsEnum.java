@@ -12,7 +12,9 @@ public enum CommandsEnum {
     ADD_PRODUCT_TO_CART("add_product_to_cart"),
     DELETE_PRODUCT_FROM_CART("delete_product_from_cart"),
     REDIRECT_TO_ACCOUNT_COMMAND("redirect_to_account"),
-    UPDATE_USER_DATA_COMMAND("update_user_data");
+    UPDATE_USER_DATA_COMMAND("update_user_data"),
+    REDIRECT_TO_SEARCH_COMMAND("redirect_to_search"),
+    SEARCH_PRODUCTS_COMMAND("search_products");
     private final String command;
 
     CommandsEnum(String command) {

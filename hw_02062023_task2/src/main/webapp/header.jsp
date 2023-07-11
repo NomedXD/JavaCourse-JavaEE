@@ -1,5 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <header>
-
     <div class="container-fluid">
 
         <div class="navb-logo">
@@ -13,9 +14,13 @@
             </div>
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart
-                    <div class="circle">${sessionScope.cart.getTotalSize()}</div>
-                </a>
+                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart</a>
+                <div class="circle">
+                    <c:choose>
+                        <c:when test="${empty sessionScope.cart}">0</c:when>
+                        <c:otherwise>${sessionScope.cart.getTotalSize()}</c:otherwise>
+                    </c:choose>
+                </div>
             </div>
 
             <div class="item">
@@ -23,7 +28,7 @@
             </div>
 
             <div class="item">
-                <a href="#">About</a>
+                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_search">Search</a>
             </div>
 
             <div class="item-button">

@@ -57,13 +57,13 @@ public class ProductRepositoryImpl implements ProductRepository {
                         resultSet.getString("imagepath"), resultSet.getString("description"),
                         resultSet.getInt("categoryid"), resultSet.getFloat("price")));
             }
-            return productArrayList;
         } catch (SQLException e) {
-            logger.warn("SQLException while getting products. Most likely request is wrong");
+            logger.warn("SQLException while getting all products. Most likely request is wrong");
             return productArrayList;
         } finally {
             connectionPool.closeConnection(connection);
         }
+        return productArrayList;
     }
 
     @Override
