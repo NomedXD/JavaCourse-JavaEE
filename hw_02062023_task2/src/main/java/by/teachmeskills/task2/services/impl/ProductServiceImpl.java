@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository = new ProductRepositoryImpl();
+
     @Override
     public Product create(Product entity) {
         return productRepository.create(entity);
@@ -42,5 +43,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductByName(String name) {
         return productRepository.getProductByName(name);
+    }
+
+    @Override
+    public List<Product> getSearchedProducts(String searchString) {
+        return productRepository.getSearchedProducts(searchString);
     }
 }

@@ -22,6 +22,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM products WHERE categoryid = ?";
     private static final String GET_PRODUCT_BY_ITS_ID = "SELECT * FROM products WHERE id = ?";
     private static final String GET_PRODUCT_BY_ITS_NAME = "SELECT * FROM products WHERE name = ?";
+    private static final String GET_SEARCHED_PRODUCTS = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
 
     @Override
     public Product create(Product entity) {
@@ -168,5 +169,28 @@ public class ProductRepositoryImpl implements ProductRepository {
         } finally {
             connectionPool.closeConnection(connection);
         }
+    }
+
+    @Override
+    public List<Product> getSearchedProducts(String searchString) {
+        List<Product> productArrayList = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_SEARCHED_PRODUCTS);
+            preparedStatement.setString(1, "%" + searchString + "%");
+            preparedStatement.setString(2, "%" + searchString + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                productArrayList.add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
+                        resultSet.getString("imagepath"), resultSet.getString("description"),
+                        resultSet.getInt("categoryid"), resultSet.getFloat("price")));
+            }
+        } catch (SQLException e) {
+            logger.warn("SQLException while getting searched products. Most likely request is wrong");
+            return productArrayList;
+        } finally {
+            connectionPool.closeConnection(connection);
+        }
+        return productArrayList;
     }
 }
