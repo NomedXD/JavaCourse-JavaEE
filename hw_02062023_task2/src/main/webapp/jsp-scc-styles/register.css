@@ -1,6 +1,6 @@
 .login-dark {
     height: 1000px;
-    background: #475d62 url(images/background.jpg);
+    background: #475d62 url(../images/background.jpg);
     background-size: cover;
     position: relative;
 }

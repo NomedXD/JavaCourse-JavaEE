@@ -5,11 +5,11 @@
 <head>
     <title>Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="../../jsp-scc-styles/shop.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="../../fontawesome/css/all.css">
+    <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
 <jsp:include page="header.jsp"/>

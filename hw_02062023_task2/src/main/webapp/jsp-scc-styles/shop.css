@@ -1,5 +1,5 @@
 .body {
-    background: #475d62 url(images/background.jpg);
+    background: #475d62 url(../images/background.jpg);
     background-size: cover;
     position: relative;
     font-family: sans-serif;

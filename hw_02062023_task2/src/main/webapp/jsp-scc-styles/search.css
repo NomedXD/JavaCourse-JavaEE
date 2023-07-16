@@ -14,7 +14,7 @@ html {
  */
 .body {
     height: 1000px;
-    background-image: url(images/background.jpg);
+    background-image: url(../images/background.jpg);
     background-size: cover;
     position: relative;
     font-family: sans-serif;
@@ -498,7 +498,7 @@ legend {
 }
 
 .choices[data-type*="select-one"] .choices__button {
-    background-image: url(images/background.jpg);
+    background-image: url(../images/background.jpg);
     padding: 0;
     background-size: 8px;
     position: absolute;

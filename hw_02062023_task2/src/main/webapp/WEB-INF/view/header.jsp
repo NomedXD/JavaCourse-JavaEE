@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <div class="navb-logo">
-            <img src="images/image.png" alt="Logo">
+            <img src="../../images/image.png" alt="Logo">
         </div>
 
         <div class="navb-items d-none d-xl-flex">
@@ -50,7 +50,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <img src="images/image.png" alt="Logo">
+                        <img src="../../images/image.png" alt="Logo">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                                 class="fa-solid fa-xmark"></i></button>
                     </div>
