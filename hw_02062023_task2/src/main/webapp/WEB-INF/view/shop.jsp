@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <div class="gallery">
-    <c:forEach items="${requestScope.categories}" var="item">
+    <c:forEach items="${categories}" var="item">
         <div class="content">
-            <img class="shopImg" src="${item.getImagepath()}">
+            <img class="shopImg" src="${contextPath}/${item.getImagepath()}">
             <h3>${item.getName()}</h3>
             <p>${item.getSometext()}</p>
             <form action="${pageContext.request.contextPath}/shop">

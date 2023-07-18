@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -13,9 +13,8 @@
 
 <body>
 <div class="login-dark">
-    <form action="shop" method="post">
+    <form action="/sneakers-shop/login" method="POST">
         <h2 class="sr-only">Login Form</h2>
-        <input type="hidden" name="command" value="login"/>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
         <div class="form-group"><input class="form-control" name="mail" placeholder="Mail"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
@@ -24,7 +23,7 @@
             <button class="btn btn-primary btn-block" type="submit">Log In</button>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/shop?command=register_redirect">Register</a>
+            <a class="btn btn-primary btn-block" href="/register">Register</a>
         </div>
         <a href="#" class="forgot">Forgot your email or password?</a></form>
 </div>

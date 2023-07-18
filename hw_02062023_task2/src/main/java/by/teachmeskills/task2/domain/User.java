@@ -85,4 +85,43 @@ public class User extends BaseEntity{
         return flatNumber;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setCurrentBalance(float currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setAccommodationNumber(String accommodationNumber) {
+        this.accommodationNumber = accommodationNumber;
+    }
+
+    public void setFlatNumber(String flatNumber) {
+        this.flatNumber = flatNumber;
+    }
 }

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes({EshopConstants.USER})
-@RequestMapping("/login")
+@RequestMapping("/sneakers-shop")
 public class LogInController {
     private final UserService userService;
     private final CategoryService categoryService;
@@ -29,12 +28,12 @@ public class LogInController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping("/login")
     public ModelAndView getLoginPage() {
         return new ModelAndView(PagesPathEnum.LOG_IN_PAGE.getPath());
     }
 
-    @PostMapping()
+    @PostMapping("/login")
     public ModelAndView logIn(@ModelAttribute(EshopConstants.USER) User user) {
         ModelMap model = new ModelMap();
         User loggedUser = userService.getUserByCredentials(user.getMail(), user.getPassword());

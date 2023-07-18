@@ -38,6 +38,10 @@ public class Cart {
         return products.size();
     }
 
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public void clear() {
         products.clear();
     }

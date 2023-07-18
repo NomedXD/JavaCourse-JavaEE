@@ -11,14 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/shop")
+@RequestMapping("/sneakers-shop")
 public class ShopController {
     private final CategoryService categoryService;
 
@@ -27,10 +26,10 @@ public class ShopController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping("/catalog")
     public ModelAndView getShopPage(@SessionAttribute(name = EshopConstants.USER, required = false) User user) {
         ModelMap model = new ModelMap();
-        if(user != null) {
+        if (user != null) {
             List<Category> categoriesList = categoryService.read();
             model.addAttribute(RequestParamsEnum.CATEGORIES.getValue(), categoriesList);
             return new ModelAndView(PagesPathEnum.SHOP_PAGE.getPath(), model);
