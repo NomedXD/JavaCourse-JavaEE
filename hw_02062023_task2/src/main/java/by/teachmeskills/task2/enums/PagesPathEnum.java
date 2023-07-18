@@ -1,14 +1,14 @@
 package by.teachmeskills.task2.enums;
 
 public enum PagesPathEnum {
-    SHOP_PAGE("/WEB-INF/view/shop.jsp"),
-    LOG_IN_PAGE("/WEB-INF/view/login.jsp"),
-    REGISTRATION_PAGE("/WEB-INF/view/register.jsp"),
-    CATEGORY_PAGE("/WEB-INF/view/category.jsp"),
-    CART_PAGE("/WEB-INF/view/cart.jsp"),
-    PRODUCT_PAGE("/WEB-INF/view/product.jsp"),
-    ACCOUNT_PAGE("/WEB-INF/view/account.jsp"),
-    SEARCH_PAGE("/WEB-INF/view/search.jsp");
+    SHOP_PAGE("shop"),
+    LOG_IN_PAGE("login"),
+    REGISTRATION_PAGE("register"),
+    CATEGORY_PAGE("category"),
+    CART_PAGE("cart"),
+    PRODUCT_PAGE("product"),
+    ACCOUNT_PAGE("account"),
+    SEARCH_PAGE("search");
 
     private final String path;
 

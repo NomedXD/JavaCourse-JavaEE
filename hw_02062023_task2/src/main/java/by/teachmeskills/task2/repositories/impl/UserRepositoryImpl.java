@@ -4,6 +4,7 @@ import by.teachmeskills.task2.domain.User;
 import by.teachmeskills.task2.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     private final static Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
     private static final String GET_USER_QUERY = "SELECT * FROM users WHERE mail = ? AND password = ?";

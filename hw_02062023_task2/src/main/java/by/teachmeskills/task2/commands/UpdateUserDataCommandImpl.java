@@ -3,6 +3,7 @@ package by.teachmeskills.task2.commands;
 import by.teachmeskills.task2.domain.User;
 import by.teachmeskills.task2.enums.PagesPathEnum;
 import by.teachmeskills.task2.enums.RequestParamsEnum;
+import by.teachmeskills.task2.repositories.impl.UserRepositoryImpl;
 import by.teachmeskills.task2.services.UserService;
 import by.teachmeskills.task2.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateUserDataCommandImpl implements BaseCommand {
-    private static final UserService userService = new UserServiceImpl();
+    private static final UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
     @Override
     public String execute(HttpServletRequest request) {
