@@ -4,11 +4,19 @@ import by.teachmeskills.task2.domain.Product;
 import by.teachmeskills.task2.repositories.ProductRepository;
 import by.teachmeskills.task2.repositories.impl.ProductRepositoryImpl;
 import by.teachmeskills.task2.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
-    private final ProductRepository productRepository = new ProductRepositoryImpl();
+    private final ProductRepository productRepository;
+
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Product create(Product entity) {

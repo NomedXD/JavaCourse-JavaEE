@@ -1,20 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <header>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <div class="container-fluid">
 
         <div class="navb-logo">
-            <img src="../../images/image.png" alt="Logo">
+            <img src="${contextPath}/images/logo.png" alt="Logo">
         </div>
 
         <div class="navb-items d-none d-xl-flex">
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=shop_redirect">Home</a>
+                <a href="${contextPath}/sneakers-shop/catalog">Home</a>
             </div>
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_cart">Cart</a>
+                <a href="${contextPath}/shop?command=redirect_to_cart">Cart</a>
                 <div class="circle">
                     <c:choose>
                         <c:when test="${empty sessionScope.cart}">0</c:when>
@@ -50,7 +51,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <img src="../../images/image.png" alt="Logo">
+                        <img src="../../images/logo.png" alt="Logo">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                                 class="fa-solid fa-xmark"></i></button>
                     </div>

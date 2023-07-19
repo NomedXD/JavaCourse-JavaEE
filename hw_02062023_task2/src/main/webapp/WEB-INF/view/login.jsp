@@ -23,7 +23,7 @@
             <button class="btn btn-primary btn-block" type="submit">Log In</button>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary btn-block" href="/register">Register</a>
+            <a class="btn btn-primary btn-block" href="/sneakers-shop/register">Register</a>
         </div>
         <a href="#" class="forgot">Forgot your email or password?</a></form>
 </div>

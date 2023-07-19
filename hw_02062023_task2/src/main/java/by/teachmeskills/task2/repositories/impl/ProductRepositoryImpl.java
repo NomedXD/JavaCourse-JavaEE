@@ -4,6 +4,7 @@ import by.teachmeskills.task2.domain.Product;
 import by.teachmeskills.task2.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
     private final static Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
     private static final String CREATE_PRODUCT = "INSERT INTO products(name, imagepath, description, categoryid, price) VALUES (?, ?, ?, ?, ?)";

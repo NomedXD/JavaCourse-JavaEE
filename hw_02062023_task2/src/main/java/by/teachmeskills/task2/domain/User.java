@@ -8,7 +8,7 @@ public class User extends BaseEntity{
     private String name;
     private String surname;
     private Date date;
-    private float currentBalance;
+    private Float currentBalance;
     private String mobile;
     private String street;
     private String accommodationNumber;

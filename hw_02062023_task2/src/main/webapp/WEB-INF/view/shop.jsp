@@ -17,12 +17,11 @@
 <div class="gallery">
     <c:forEach items="${categories}" var="item">
         <div class="content">
-            <img class="shopImg" src="${contextPath}/${item.getImagepath()}">
-            <h3>${item.getName()}</h3>
-            <p>${item.getSometext()}</p>
-            <form action="${pageContext.request.contextPath}/shop">
-                <input type="hidden" name="command" value="category_redirect"/>
-                <button class="buy-1" name="categoryid" value="${item.getId()}">Buy now</button>
+            <img class="shopImg" src="${contextPath}/${item.imagepath}" alt="${contextPath}/images/error-page.png">
+            <h3>${item.name}</h3>
+            <p>${item.sometext}</p>
+            <form action="${contextPath}/sneakers-shop/category" method="GET">
+                <button class="buy-1" name="categoryid" value="${item.id}">Buy now</button>
             </form>
         </div>
     </c:forEach>

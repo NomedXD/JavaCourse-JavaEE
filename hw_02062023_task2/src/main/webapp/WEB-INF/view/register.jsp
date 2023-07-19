@@ -13,9 +13,8 @@
 
 <body>
 <div class="login-dark">
-    <form action="shop" method="post" class="js-form">
+    <form action="/sneakers-shop/register" method="POST" class="js-form">
         <h2 class="sr-only">Login Form</h2>
-        <input type="hidden" name="command" value="register"/>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
         <div class="form-group">
             <input class="form-control js-input-email" name="mail" placeholder="Enter email">
@@ -27,13 +26,13 @@
             <input class="form-control js-input-surname" name="surname" placeholder="Enter surname">
         </div>
         <div class="form-group">
-            <input class="form-control js-input-date" type="date" name ="date" placeholder="Input date">
+            <input class="form-control js-input-date" type="date" name ="dateParam" placeholder="Input date">
         </div>
         <div class="form-group">
             <input class="form-control js-input-password" type="password" name="password" placeholder="Enter password">
         </div>
         <div class="form-group">
-            <input class="form-control js-input-repeatPassword" name="repeatPassword" placeholder="Confirm password">
+            <input class="form-control js-input-repeatPassword" name="repeatPasswordParam" placeholder="Confirm password">
         </div>
         <div class="form-group">
             <button class="btn btn-primary btn-block" type="submit">Submit and log in</button>
