@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -15,28 +15,29 @@
     <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
-<c:forEach items="${sessionScope.cart.getProducts()}" var="cartProduct">
+<c:forEach items="${sessionScope.cart.products}" var="cartProduct">
     <div class="row p-2 bg-white border rounded mt-2">
         <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
-                                        src="${cartProduct.getImagepath()}"></div>
+                                        src="${contextPath}/${cartProduct.imagepath}"></div>
         <div class="col-md-6 mt-1">
-            <h5>${cartProduct.getName()}</h5>
+            <h5>${cartProduct.name}</h5>
             <div class="d-flex flex-row">
                 <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                         class="fa fa-star"></i></div>
                 <span>310</span>
             </div>
-            <p class="text-justify text-truncate para mb-0">${cartProduct.getDescription()}<br><br></p>
+            <p class="text-justify text-truncate para mb-0">${cartProduct.description}<br><br></p>
         </div>
         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
             <div class="d-flex flex-row align-items-center">
-                <h4 class="mr-1">${cartProduct.getPrice()}$</h4>
+                <h4 class="mr-1">${cartProduct.price}$</h4>
             </div>
             <h6 class="text-success">Available</h6>
             <div class="d-flex flex-column mt-4">
-                <a class="btn btn-primary btn-sm" type="button" href="${pageContext.request.contextPath}
-                /shop?command=delete_product_from_cart&productid=${cartProduct.getId()}">Delete form cart</a>
+                <a class="btn btn-primary btn-sm" type="button" href="${contextPath}
+                /sneakers-shop/remove-product?productid=${cartProduct.id}">Delete form cart</a>
             </div>
         </div>
     </div>

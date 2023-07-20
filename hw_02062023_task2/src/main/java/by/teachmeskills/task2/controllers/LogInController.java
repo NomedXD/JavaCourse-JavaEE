@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LogInController {
     private final UserService userService;
     private final CategoryService categoryService;
+
     @Autowired
     public LogInController(UserService userService, CategoryService categoryService) {
         this.userService = userService;

@@ -2,15 +2,16 @@ package by.teachmeskills.task2.services.impl;
 
 import by.teachmeskills.task2.domain.Category;
 import by.teachmeskills.task2.repositories.CategoryRepository;
-import by.teachmeskills.task2.repositories.impl.CategoryRepositoryImpl;
 import by.teachmeskills.task2.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
+
     @Autowired
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

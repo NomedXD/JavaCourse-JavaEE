@@ -15,21 +15,21 @@
             </div>
 
             <div class="item">
-                <a href="${contextPath}/shop?command=redirect_to_cart">Cart</a>
+                <a href="${contextPath}/sneakers-shop/cart">Cart</a>
                 <div class="circle">
                     <c:choose>
                         <c:when test="${empty sessionScope.cart}">0</c:when>
-                        <c:otherwise>${sessionScope.cart.getTotalSize()}</c:otherwise>
+                        <c:otherwise>${sessionScope.cart.totalSize}</c:otherwise>
                     </c:choose>
                 </div>
             </div>
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_account">Account</a>
+                <a href="${contextPath}/sneakers-shop/account">Account</a>
             </div>
 
             <div class="item">
-                <a href="${pageContext.request.contextPath}/shop?command=redirect_to_search">Search</a>
+                <a href="${contextPath}/sneakers-shop/search">Search</a>
             </div>
 
             <div class="item-button">

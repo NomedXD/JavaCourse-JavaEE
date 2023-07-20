@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <div class="container">
     <!-- product -->
@@ -24,13 +25,13 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <div class="product-image">
-                    <img src="${requestScope.product.getImagepath()}" class="img-responsive" alt=""/>
+                    <img src="${contextPath}/${product.imagepath}" class="img-responsive" alt=""/>
                 </div>
             </div>
 
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                 <h2 class="name">
-                    ${requestScope.product.getName()}
+                    ${product.name}
                     <small>Genre: <a>Adeline</a></small>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
@@ -40,7 +41,7 @@
                 </h2>
                 <hr/>
                 <h3 class="price-container">
-                    ${requestScope.product.getName()}
+                    ${product.name}
                 </h3>
                 <hr/>
                 <div class="description description-tabs">
@@ -51,7 +52,7 @@
                         <div class="tab-pane fade active in" id="more-information">
                             <br/>
                             <p>
-                                ${requestScope.product.getDescription()}
+                                ${product.description}
                             </p>
                         </div>
                     </div>
@@ -59,8 +60,7 @@
                 <hr/>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="${pageContext.request.contextPath}
-                /shop?command=add_product_to_cart&productid=${requestScope.product.getId()}" class="btn btn-success btn-lg">Add to cart ${requestScope.product.getPrice()}$</a>
+                        <a href="${contextPath}/sneakers-shop/add-product?productid=${product.id}" class="btn btn-success btn-lg">Add to cart ${product.price}$</a>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group pull-right">

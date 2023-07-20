@@ -1,13 +1,13 @@
 package by.teachmeskills.task2.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User extends BaseEntity{
     private String mail;
     private String password;
     private String name;
     private String surname;
-    private Date date;
+    private LocalDate date;
     private Float currentBalance;
     private String mobile;
     private String street;
@@ -18,7 +18,7 @@ public class User extends BaseEntity{
 
     }
 
-    public User(int id, String mail, String password, String name, String surname, Date date, float currentBalance, String mobile, String street, String accommodationNumber, String flatNumber) {
+    public User(int id, String mail, String password, String name, String surname, LocalDate date, float currentBalance, String mobile, String street, String accommodationNumber, String flatNumber) {
         this.id = id;
         this.mail = mail;
         this.password = password;
@@ -32,7 +32,7 @@ public class User extends BaseEntity{
         this.flatNumber = flatNumber;
     }
 
-    public User(String mail, String password, String name, String surname, Date date, float currentBalance){
+    public User(String mail, String password, String name, String surname, LocalDate date, float currentBalance){
         this.mail = mail;
         this.password = password;
         this.name = name;
@@ -61,7 +61,7 @@ public class User extends BaseEntity{
         return surname;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -101,7 +101,7 @@ public class User extends BaseEntity{
         this.surname = surname;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

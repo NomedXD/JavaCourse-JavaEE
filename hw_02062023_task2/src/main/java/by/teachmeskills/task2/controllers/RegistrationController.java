@@ -6,7 +6,6 @@ import by.teachmeskills.task2.enums.PagesPathEnum;
 import by.teachmeskills.task2.enums.RequestParamsEnum;
 import by.teachmeskills.task2.services.CategoryService;
 import by.teachmeskills.task2.services.UserService;
-import by.teachmeskills.task2.utils.DateUtils;
 import by.teachmeskills.task2.validator.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,15 +32,15 @@ public class RegistrationController {
     }
 
     @GetMapping("/register")
-    public ModelAndView getLoginPage() {
+    public ModelAndView getRegistrationPage() {
         return new ModelAndView(PagesPathEnum.REGISTRATION_PAGE.getPath());
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute(EshopConstants.USER) User user, @RequestParam(name = "repeatPasswordParam") String repeatPassword, @RequestParam(name = "dateParam") String date) {
+    public ModelAndView register(@ModelAttribute(EshopConstants.USER) User user, @RequestParam(name = "repeatPasswordParam") String repeatPassword) {
         if (ValidatorUtils.validateRegistration(user.getMail(), user.getName(), user.getSurname(), user.getPassword(), repeatPassword)) {
             ModelMap model = new ModelMap();
-            User loggedUser = userService.create(new User(user.getMail(), user.getPassword(), user.getName(), user.getSurname(), DateUtils.parseDate(date), 0));
+            User loggedUser = userService.create(new User(user.getMail(), user.getPassword(), user.getName(), user.getSurname(), user.getDate(), 0));
             if (loggedUser != null) {
                 model.addAttribute(EshopConstants.USER, loggedUser);
                 model.addAttribute(RequestParamsEnum.CATEGORIES.getValue(), categoryService.read());

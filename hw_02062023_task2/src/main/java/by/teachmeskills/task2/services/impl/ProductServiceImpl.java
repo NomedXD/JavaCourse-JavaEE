@@ -2,7 +2,6 @@ package by.teachmeskills.task2.services.impl;
 
 import by.teachmeskills.task2.domain.Product;
 import by.teachmeskills.task2.repositories.ProductRepository;
-import by.teachmeskills.task2.repositories.impl.ProductRepositoryImpl;
 import by.teachmeskills.task2.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

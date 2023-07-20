@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <div class="s007 container">
-    <form action="shop" method="post">
-        <input type="hidden" name="command" value="search_products"/>
+    <form action="/sneakers-shop/search" method="POST">
         <div class="inner-form">
             <div class="basic-search">
                 <div class="input-field">
@@ -33,7 +33,7 @@
                     </div>
                     <input id="search" name="searchField" type="text" placeholder="Search..."/>
                     <div class="result-count">
-                        <span>${requestScope.products.size()} </span>results
+                        <span>${products.size()} </span>results
                     </div>
                 </div>
             </div>
@@ -115,28 +115,28 @@
     </form>
 </div>
 <div class="container">
-    <c:forEach items="${requestScope.products}" var="product">
+    <c:forEach items="${products}" var="product">
         <div class="row p-2 bg-white border rounded mt-2">
             <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
-                                            src="${product.getImagepath()}"></div>
+                                            src="${contextPath}/${product.imagepath}"></div>
             <div class="col-md-6 mt-1">
-                <h5>${product.getName()}</h5>
+                <h5>${product.name}</h5>
                 <div class="d-flex flex-row">
                     <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                             class="fa fa-star"></i><i
                             class="fa fa-star"></i></div>
                     <span>310</span>
                 </div>
-                <p class="text-justify text-truncate para mb-0">${product.getDescription()}<br><br></p>
+                <p class="text-justify text-truncate para mb-0">${product.description}<br><br></p>
             </div>
             <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                 <div class="d-flex flex-row align-items-center">
-                    <h4 class="mr-1">${product.getPrice()}$</h4>
+                    <h4 class="mr-1">${product.price}$</h4>
                 </div>
                 <h6 class="text-success">Available</h6>
                 <div class="d-flex flex-column mt-4">
-                    <a class="btn btn-primary btn-sm" type="button" href="${pageContext.request.contextPath}
-                /shop?command=product_redirect&productid=${product.getId()}">More info</a>
+                    <a class="btn btn-primary btn-sm" type="button" href="${contextPath}
+                /sneakers-shop/product?productid=${product.id}">More info</a>
                     <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
                 </div>
             </div>

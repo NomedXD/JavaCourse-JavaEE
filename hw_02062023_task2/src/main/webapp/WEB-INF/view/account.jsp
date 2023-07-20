@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
 </head>
 <body class="body">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <!--User account info below-->
 <div class="container">
@@ -27,9 +28,9 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                  class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>${sessionScope.currentUser.getName()}</h4>
+                                <h4>${sessionScope.user.name}</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">${sessionScope.currentUser.getStreet()}, ${sessionScope.currentUser.getAccommodationNumber()}, ${sessionScope.currentUser.getFlatNumber()}</p>
+                                <p class="text-muted font-size-sm">${sessionScope.user.street}, ${sessionScope.user.accommodationNumber}, ${sessionScope.user.flatNumber}</p>
                                 <button class="btn btn-primary">Follow</button>
                                 <button class="btn btn-outline-primary">Message</button>
                             </div>
@@ -45,7 +46,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getName()} ${sessionScope.currentUser.getSurname()}
+                                ${sessionScope.user.name} ${sessionScope.user.surname}
                             </div>
                         </div>
                         <hr>
@@ -54,7 +55,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getMail()}
+                                ${sessionScope.user.mail}
                             </div>
                         </div>
                         <hr>
@@ -63,17 +64,17 @@
                                 <h6 class="mb-0">Birthday</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                ${sessionScope.currentUser.getDate()}
+                                ${sessionScope.user.date}
                             </div>
                         </div>
                         <hr>
-                        <form action="shop" method="post" id="updateUser">
+                        <form action="${contextPath}/sneakers-shop/update-account" method="POST" id="updateUser">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Mobile</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    ${sessionScope.currentUser.getMobile()}
+                                    ${sessionScope.user.mobile}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="mobile" class="form-control">
@@ -87,7 +88,7 @@
                                     <h6 class="mb-0">Address: Street</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    ${sessionScope.currentUser.getStreet()}
+                                    ${sessionScope.user.street}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="street" class="form-control">
@@ -101,7 +102,7 @@
                                     <h6 class="mb-0">Address: Accommodation number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    ${sessionScope.currentUser.getAccommodationNumber()}
+                                    ${sessionScope.user.accommodationNumber}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="accommodationNumber" class="form-control">
@@ -115,7 +116,7 @@
                                     <h6 class="mb-0">Address: Flat number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    ${sessionScope.currentUser.getFlatNumber()}
+                                    ${sessionScope.user.flatNumber}
                                     <div class="d-flex">
                                         <div class="d-inline-block">
                                             <input type="text" name="flatNumber" class="form-control">
@@ -123,7 +124,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="command" value="update_user_data"/>
                         </form>
                         <hr>
                         <div class="row">

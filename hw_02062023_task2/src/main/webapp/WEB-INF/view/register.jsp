@@ -26,7 +26,7 @@
             <input class="form-control js-input-surname" name="surname" placeholder="Enter surname">
         </div>
         <div class="form-group">
-            <input class="form-control js-input-date" type="date" name ="dateParam" placeholder="Input date">
+            <input class="form-control js-input-date" type="date" name ="date" placeholder="Input date">
         </div>
         <div class="form-group">
             <input class="form-control js-input-password" type="password" name="password" placeholder="Enter password">

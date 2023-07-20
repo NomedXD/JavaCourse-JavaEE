@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.setString(2, entity.getPassword());
             preparedStatement.setString(3, entity.getName());
             preparedStatement.setString(4, entity.getSurname());
-            preparedStatement.setDate(5, new Date(entity.getDate().getTime()));
+            preparedStatement.setDate(5, Date.valueOf(entity.getDate()));
             preparedStatement.setFloat(6, entity.getCurrentBalance());
             preparedStatement.execute();
             user = getUserByCredentials(entity.getMail(), entity.getPassword());
@@ -56,7 +56,7 @@ public class UserRepositoryImpl implements UserRepository {
             ResultSet resultSet = statement.executeQuery(GET_ALL_USERS);
             while (resultSet.next()) {
                 userArrayList.add(new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
-                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date"),
+                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date").toLocalDate(),
                         resultSet.getFloat("balance"), resultSet.getString("mobile"),
                         resultSet.getString("street"), resultSet.getString("accommodation_number"),
                         resultSet.getString("flat_number")));
@@ -118,7 +118,7 @@ public class UserRepositoryImpl implements UserRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user = new User(resultSet.getInt("id"), resultSet.getString("mail"), resultSet.getString("password"),
-                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date"),
+                        resultSet.getString("name"), resultSet.getString("surname"), resultSet.getDate("date").toLocalDate(),
                         resultSet.getFloat("balance"), resultSet.getString("mobile"),
                         resultSet.getString("street"), resultSet.getString("accommodation_number"),
                         resultSet.getString("flat_number"));
