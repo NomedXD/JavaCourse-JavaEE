@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller // Пока оставил Controller, пока не предвидится, что будем возвращать json
-@RequestMapping("/sneakers-shop")
+@RequestMapping("/category")
 public class CategoryController {
     private final ProductService productService;
 
@@ -21,16 +21,10 @@ public class CategoryController {
         this.productService = productService;
     }
 
-    @GetMapping("/category")
+    @GetMapping
     public ModelAndView getCategoryPage(@RequestParam(name = "categoryid") Integer categoryId) {
         ModelMap model = new ModelMap();
         model.addAttribute(RequestParamsEnum.PRODUCTS.getValue(), productService.getCategoryProducts(categoryId));
         return new ModelAndView(PagesPathEnum.CATEGORY_PAGE.getPath(), model);
-
-        /*
-        Есть также новый стиль, когда в метод передается Model model в качестве параметра, потом
-        туда добавляются данные, которые хотим отобразить и возвращается лишь страница, например: return
-        RequestParamsEnum.PRODUCTS.getValue();, потому что возвращать модель необязательно. Мб потом переписать!
-         */
     }
 }

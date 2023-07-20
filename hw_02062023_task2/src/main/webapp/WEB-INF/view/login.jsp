@@ -13,7 +13,7 @@
 
 <body>
 <div class="login-dark">
-    <form action="/sneakers-shop/login" method="POST">
+    <form action="/sneakersShop/login" method="POST">
         <h2 class="sr-only">Login Form</h2>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
         <div class="form-group"><input class="form-control" name="mail" placeholder="Mail"></div>
@@ -23,7 +23,7 @@
             <button class="btn btn-primary btn-block" type="submit">Log In</button>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary btn-block" href="/sneakers-shop/register">Register</a>
+            <a class="btn btn-primary btn-block" href="/sneakersShop/registration">Register</a>
         </div>
         <a href="#" class="forgot">Forgot your email or password?</a></form>
 </div>

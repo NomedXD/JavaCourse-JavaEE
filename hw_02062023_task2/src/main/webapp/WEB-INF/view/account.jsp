@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <hr>
-                        <form action="${contextPath}/sneakers-shop/update-account" method="POST" id="updateUser">
+                        <form action="${contextPath}/sneakersShop/account/update" method="POST" id="updateUser">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Mobile</h6>

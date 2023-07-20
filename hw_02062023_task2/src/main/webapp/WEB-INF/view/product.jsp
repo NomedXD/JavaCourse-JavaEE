@@ -60,7 +60,7 @@
                 <hr/>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="${contextPath}/sneakers-shop/add-product?productid=${product.id}" class="btn btn-success btn-lg">Add to cart ${product.price}$</a>
+                        <a href="${contextPath}/sneakersShop/cart/add?productid=${product.id}" class="btn btn-success btn-lg">Add to cart ${product.price}$</a>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group pull-right">

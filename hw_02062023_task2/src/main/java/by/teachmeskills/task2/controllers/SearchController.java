@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/sneakers-shop")
+@RequestMapping("/search")
 public class SearchController {
     private final ProductService productService;
 
@@ -25,14 +25,14 @@ public class SearchController {
         this.productService = productService;
     }
 
-    @GetMapping("/search")
+    @GetMapping
     public ModelAndView getSearchPage() {
         ModelMap model = new ModelMap();
         model.addAttribute(RequestParamsEnum.PRODUCTS.getValue(), productService.read());
         return new ModelAndView(PagesPathEnum.SEARCH_PAGE.getPath(), model);
     }
 
-    @PostMapping("/search")
+    @PostMapping
     public ModelAndView submitSearch(@RequestParam(name = "searchField") String searchString) {
         ModelMap model = new ModelMap();
         List<Product> productList = productService.getSearchedProducts(searchString);

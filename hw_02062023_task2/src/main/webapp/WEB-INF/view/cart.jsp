@@ -37,7 +37,7 @@
             <h6 class="text-success">Available</h6>
             <div class="d-flex flex-column mt-4">
                 <a class="btn btn-primary btn-sm" type="button" href="${contextPath}
-                /sneakers-shop/remove-product?productid=${cartProduct.id}">Delete form cart</a>
+                /sneakersShop/cart/remove?productid=${cartProduct.id}">Delete form cart</a>
             </div>
         </div>
     </div>

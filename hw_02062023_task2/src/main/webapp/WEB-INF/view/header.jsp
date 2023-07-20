@@ -11,11 +11,11 @@
         <div class="navb-items d-none d-xl-flex">
 
             <div class="item">
-                <a href="${contextPath}/sneakers-shop/catalog">Home</a>
+                <a href="${contextPath}/sneakersShop/catalog">Home</a>
             </div>
 
             <div class="item">
-                <a href="${contextPath}/sneakers-shop/cart">Cart</a>
+                <a href="${contextPath}/sneakersShop/cart">Cart</a>
                 <div class="circle">
                     <c:choose>
                         <c:when test="${empty sessionScope.cart}">0</c:when>
@@ -25,11 +25,11 @@
             </div>
 
             <div class="item">
-                <a href="${contextPath}/sneakers-shop/account">Account</a>
+                <a href="${contextPath}/sneakersShop/account">Account</a>
             </div>
 
             <div class="item">
-                <a href="${contextPath}/sneakers-shop/search">Search</a>
+                <a href="${contextPath}/sneakersShop/search">Search</a>
             </div>
 
             <div class="item-button">

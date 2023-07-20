@@ -3,8 +3,12 @@ package by.teachmeskills.task2.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.HandlerTypePredicate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -31,6 +35,12 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/fontawesome/**").addResourceLocations("/fontawesome/");
         registry.addResourceHandler("/jsp-scc-styles/**").addResourceLocations("/jsp-scc-styles/");
         registry.addResourceHandler("/jsp-scripts/**").addResourceLocations("/jsp-scripts/");
+    }
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.addPathPrefix("/sneakersShop",
+                HandlerTypePredicate.forAnnotation(Controller.class));
     }
 
 //    @Override

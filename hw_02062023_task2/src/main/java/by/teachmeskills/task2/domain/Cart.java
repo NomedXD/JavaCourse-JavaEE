@@ -26,6 +26,16 @@ public class Cart {
         totalPrice -= product.getPrice();
     }
 
+    public static Cart checkCart(Product product, Cart cart){
+        if (cart != null) {
+            cart.addProduct(product);
+        } else {
+            cart = new Cart();
+            cart.addProduct(product);
+        }
+        return cart;
+    }
+
     public List<Product> getProducts() {
         return new ArrayList<>(products.values());
     }

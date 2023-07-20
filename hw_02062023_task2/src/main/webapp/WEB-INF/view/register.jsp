@@ -13,7 +13,7 @@
 
 <body>
 <div class="login-dark">
-    <form action="/sneakers-shop/register" method="POST" class="js-form">
+    <form action="/sneakersShop/registration" method="POST" class="js-form">
         <h2 class="sr-only">Login Form</h2>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
         <div class="form-group">

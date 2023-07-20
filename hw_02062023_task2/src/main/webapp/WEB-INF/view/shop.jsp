@@ -20,7 +20,7 @@
             <img class="shopImg" src="${contextPath}/${item.imagepath}" alt="${contextPath}/images/error-page.png">
             <h3>${item.name}</h3>
             <p>${item.sometext}</p>
-            <form action="${contextPath}/sneakers-shop/category" method="GET">
+            <form action="${contextPath}/sneakersShop/category" method="GET">
                 <button class="buy-1" name="categoryid" value="${item.id}">Buy now</button>
             </form>
         </div>
