@@ -2,17 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <head>
     <title>Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../jsp-scc-styles/shop.css">
+    <link rel="stylesheet" href="${contextPath}/jsp-scc-styles/shop.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
+    <link rel="stylesheet" href="${contextPath}/fontawesome/css/all.css">
+    <link rel="stylesheet" href="${contextPath}/jsp-scc-styles/header.css">
 </head>
 <body class="body">
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <div class="gallery">
     <c:forEach items="${categories}" var="item">
@@ -20,8 +20,8 @@
             <img class="shopImg" src="${contextPath}/${item.imagepath}" alt="${contextPath}/images/error-page.png">
             <h3>${item.name}</h3>
             <p>${item.sometext}</p>
-            <form action="${contextPath}/sneakersShop/category" method="GET">
-                <button class="buy-1" name="categoryid" value="${item.id}">Buy now</button>
+            <form action="${contextPath}/sneakersShop/category/${item.id}" method="GET">
+                <button class="buy-1">Buy now</button>
             </form>
         </div>
     </c:forEach>

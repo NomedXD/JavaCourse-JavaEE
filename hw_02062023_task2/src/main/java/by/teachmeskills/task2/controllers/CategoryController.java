@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller // Пока оставил Controller, пока не предвидится, что будем возвращать json
@@ -21,8 +21,8 @@ public class CategoryController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public ModelAndView getCategoryPage(@RequestParam(name = "categoryid") Integer categoryId) {
+    @GetMapping("/{categoryid}")
+    public ModelAndView getCategoryPage(@PathVariable(name = "categoryid") Integer categoryId) {
         ModelMap model = new ModelMap();
         model.addAttribute(RequestParamsEnum.PRODUCTS.getValue(), productService.getCategoryProducts(categoryId));
         return new ModelAndView(PagesPathEnum.CATEGORY_PAGE.getPath(), model);

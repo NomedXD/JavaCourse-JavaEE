@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <head>
     <title>Search</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -11,14 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../fontawesome/css/all.css">
+    <link rel="stylesheet" href="${contextPath}/fontawesome/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="../../jsp-scc-styles/search.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../jsp-scc-styles/header.css">
+    <link href="${contextPath}/jsp-scc-styles/search.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${contextPath}/jsp-scc-styles/header.css">
 </head>
 <body class="body">
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="header.jsp"/>
 <div class="s007 container">
     <form action="/sneakersShop/search" method="POST">
@@ -136,7 +136,7 @@
                 <h6 class="text-success">Available</h6>
                 <div class="d-flex flex-column mt-4">
                     <a class="btn btn-primary btn-sm" type="button" href="${contextPath}
-                /sneakersShop/product?productid=${product.id}">More info</a>
+                /sneakersShop/product/${product.id}">More info</a>
                     <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
                 </div>
             </div>

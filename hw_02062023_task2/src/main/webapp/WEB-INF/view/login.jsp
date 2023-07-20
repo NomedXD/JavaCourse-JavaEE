@@ -1,16 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <head>
     <title>Shop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="../../jsp-scc-styles/login.css">
+    <link rel="stylesheet" href="${contextPath}/jsp-scc-styles/login.css">
 </head>
-
 <body>
 <div class="login-dark">
     <form action="/sneakersShop/login" method="POST">
