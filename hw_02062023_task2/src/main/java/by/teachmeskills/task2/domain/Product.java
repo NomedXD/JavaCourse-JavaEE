@@ -43,4 +43,24 @@ public class Product extends BaseEntity{
     public float getPrice() {
         return price;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategoryid(int categoryid) {
+        this.categoryid = categoryid;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 }
